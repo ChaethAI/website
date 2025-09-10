@@ -1,0 +1,64 @@
+import * as React from "react";
+import { Container } from "./container";
+import { Shield, Smartphone, Scale, Globe } from "lucide-react";
+
+type CompactCard = {
+  category: string;
+  title: string;
+  blurb?: string;
+};
+
+const COMPACT: CompactCard[] = [
+  { category: "Security", title: "Enterprise-Grade Security", blurb: "Industry-standard protection with zero training on your data." },
+  { category: "Workflows", title: "Agentic Workflows", blurb: "Expert-quality work product for complex flows without prompting." },
+  { category: "Models", title: "Domain-Specific Models", blurb: "High-performing custom models for complex professional work." },
+  { category: "Support", title: "24/7 Customer Support", blurb: "White glove support to maximize your experience." },
+];
+
+const ICONS = [Shield, Smartphone, Scale, Globe];
+
+export function CompactExplainers() {
+  return (
+    <Container outerClassName="bg-neutral-900" className="py-24 sm:py-28 lg:py-32">
+
+      {/* Marquee wrapper */}
+      <div className="relative overflow-hidden group">
+        <div className="marquee relative z-0 flex whitespace-nowrap will-change-transform [animation-play-state:paused] group-hover:[animation-play-state:running] gap-4 md:gap-6 lg:gap-8">
+          {[...COMPACT, ...COMPACT].map((c, idx) => {
+            const Icon = ICONS[idx % ICONS.length];
+            return (
+              <div key={idx} className="flex-none">
+                <div className="w-56 md:w-60 lg:w-64 whitespace-normal rounded-none bg-neutral-800/40 p-4">
+                  <Icon className="h-6 w-6 text-white mb-2" />
+                  <h4 className="text-white text-base md:text-lg font-medium truncate">{c.title}</h4>
+                  {c.blurb && (
+                    <p className="text-neutral-300 text-sm mt-1 line-clamp-2">{c.blurb}</p>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        {/* Edge gradients tied to the scrolling frame */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 md:w-24 bg-gradient-to-r from-neutral-900 via-neutral-900/70 to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 md:w-24 bg-gradient-to-l from-neutral-900 via-neutral-900/70 to-transparent" />
+      </div>
+
+      {/**
+       * Backup (previous grid version):
+       *
+       * <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+       *   {COMPACT.map((c, i) => (
+       *     <Card key={i} className="border-0 bg-neutral-800 shadow-none">
+       *       <CardContent className="p-6 md:p-10">
+       *         <span className="mb-3 inline-flex items-center bg-white/10 px-2 py-0.5 text-[11px] font-mono uppercase tracking-wider text-white">{c.category}</span>
+       *         <h4 className="text-lg font-semibold text-white sm:text-xl">{c.title}</h4>
+       *         {c.blurb && <p className="mt-3 text-neutral-300">{c.blurb}</p>}
+       *       </CardContent>
+       *     </Card>
+       *   ))}
+       * </div>
+       */}
+    </Container>
+  );
+}

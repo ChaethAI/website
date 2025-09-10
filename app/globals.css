@@ -120,3 +120,18 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Marquee animation used by CompactExplainers */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee { animation: marquee 24s linear infinite; }
+
+/* Simple line clamp utilities (no plugin needed) */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
