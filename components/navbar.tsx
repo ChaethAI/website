@@ -26,7 +26,7 @@ export default function Navbar() {
         {/* Right: Demo */}
         <div>
           <Button variant="primary" size="lg" asChild>
-            <Link href="demo.chaeth.com">Demo</Link>
+            <Link href="https://demo.chaerth.com" target="_blank" rel="noopener noreferrer">Try Now</Link>
           </Button>
         </div>
       </div>
