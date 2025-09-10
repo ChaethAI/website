@@ -1,0 +1,46 @@
+"use client"
+
+import ShaderBackground from "@/components/hero_bg"
+import { Button } from "@/components/ui/button"
+import { Typography } from "@/components/global/typography"
+
+export default function HeroContent() {
+  return (
+    <ShaderBackground>
+      <main className="absolute bottom-5 left-5 z-20 max-w-4xl">
+      <div className="text-left">
+        <div
+          className="inline-flex items-center px-3 py-1 rounded-full bg-black/20 backdrop-blur-sm mb-4 relative border border-white/10"
+          style={{
+            filter: "url(#glass-effect)",
+          }}
+        >
+          <div className="absolute top-0 left-1 right-1 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-full" />
+          <Typography variant="caption" className="relative z-10 text-white">
+            🇹🇭 Data residency in Thailand
+          </Typography>
+        </div>
+
+        <Typography variant="h1" className="mb-4">
+          <span className="font-medium italic font-serif">Local-first</span> AI
+          <br />
+          <span className="font-light tracking-tight text-white">for Thai enterprises</span>
+        </Typography>
+
+        <Typography variant="subtitle" className="mb-6">
+          Augment All of Your Work on One Integrated, Secure Platform
+        </Typography>
+
+        <div className="flex items-center gap-4 flex-wrap">
+          <Button variant="ghosty" size="lg">
+            Book a Demo
+          </Button>
+          <Button variant="primary" size="lg">
+            Get Started
+          </Button>
+        </div>
+      </div>
+      </main>
+    </ShaderBackground>
+  )
+}
