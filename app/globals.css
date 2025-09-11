@@ -145,8 +145,12 @@
   display: none; /* Chrome, Safari */
 }
 
-/* Shared section title utility */
-.section-title {
-  /* Match previous sizes, reduce weight, increase spacing */
-  @apply text-center text-2xl sm:text-3xl lg:text-5xl font-light tracking-tight text-white mb-24 sm:mb-18 lg:mb-32;
+/* Section typography moved into components/global/typography.tsx */
+
+
+/* reduce motion users */
+@media (prefers-reduced-motion: reduce) {
+  .transition-all {
+    transition: none !important;
+  }
 }

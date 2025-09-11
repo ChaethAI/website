@@ -3,6 +3,10 @@
 import ShaderBackground from "@/components/hero_bg"
 import { Button } from "@/components/ui/button"
 import { Typography } from "@/components/global/typography"
+import Link from "next/link"
+
+const CONTACT_LINK = "mailto:hello@chaeth.com"
+const DEMO_LINK = "https://demo.chaeth.com"
 
 export default function HeroContent() {
   return (
@@ -32,11 +36,11 @@ export default function HeroContent() {
         </Typography>
 
         <div className="flex items-center gap-4 flex-wrap">
-          <Button variant="ghosty" size="lg">
-            Get in touch
+          <Button variant="ghosty" size="lg" asChild>
+            <Link href={CONTACT_LINK}>Get in touch</Link>
           </Button>
-          <Button variant="primary" size="lg">
-            Try now
+          <Button variant="primary" size="lg" asChild>
+            <Link href={DEMO_LINK} target="_blank" rel="noopener noreferrer">Try now</Link>
           </Button>
         </div>
       </div>

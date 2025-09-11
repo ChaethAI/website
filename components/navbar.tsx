@@ -16,7 +16,7 @@ export default function Navbar() {
             <Link href="#features">Features</Link>
           </Button>
           <Button variant="ghost" className="text-white" asChild>
-            <Link href="#chat">Chat</Link>
+            <Link href="https://demo.chaeth.com" target="_blank" rel="noopener noreferrer">Chat</Link>
           </Button>
           <Button variant="ghost" className="text-white" asChild>
             <Link href="#hosting">Hosting</Link>
@@ -26,7 +26,7 @@ export default function Navbar() {
         {/* Right: Demo */}
         <div>
           <Button variant="primary" size="lg" asChild>
-            <Link href="https://demo.chaerth.com" target="_blank" rel="noopener noreferrer">Try Now</Link>
+            <Link href="https://demo.chaeth.com" target="_blank" rel="noopener noreferrer">Try Now</Link>
           </Button>
         </div>
       </div>

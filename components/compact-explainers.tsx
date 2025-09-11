@@ -2,23 +2,63 @@
 
 import * as React from "react";
 import { Container } from "./container";
-import { Shield, Smartphone, Scale, Globe } from "lucide-react";
+import { Typography } from "@/components/global/typography";
+import type { LucideIcon } from "lucide-react";
+import { Shield, Smartphone, Server, Bot, Brain, Headphones, ScrollText } from "lucide-react";
 
 type CompactCard = {
   category: string;
   title: string;
   blurb?: string;
+  icon: LucideIcon;
 };
 
 const COMPACT: CompactCard[] = [
-  { category: "Security", title: "Enterprise-Grade Security", blurb: "Industry-standard protection with zero training on your data." },
-  { category: "Workflows", title: "Agentic Workflows", blurb: "Expert-quality work product for complex flows without prompting." },
-  { category: "Models", title: "Domain-Specific Models", blurb: "High-performing custom models for complex professional work." },
-  { category: "Support", title: "24/7 Customer Support", blurb: "White glove support to maximize your experience." },
-  { category: "Auditability", title: "Auditable by Design", blurb: "Traceable actions and reproducible outputs with tamper-evident logs." },
+  {
+    category: "Residency",
+    title: "Thai-hosted infrastructure",
+    blurb: "Deploy on Thai cloud/GPU providers; data at rest stays in Thailand (PDPA‑aligned). Shared or dedicated servers/GPUs; on‑prem optional.",
+    icon: Server,
+  },
+  {
+    category: "Experience",
+    title: "Mobile‑first",
+    blurb: "Responsive UI, Thai language, PWA install, and passkeys where supported—built for teams on the go.",
+    icon: Smartphone,
+  },
+  {
+    category: "Security",
+    title: "Enterprise-Grade Security",
+    blurb: "Industry-standard protection with zero training on your data.",
+    icon: Shield,
+  },
+  {
+    category: "Workflows",
+    title: "Agentic Workflows",
+    blurb: "Expert-quality work product for complex flows without prompting.",
+    icon: Bot,
+  },
+  {
+    category: "Models",
+    title: "Domain-Specific Models",
+    blurb: "High-performing custom models for complex professional work.",
+    icon: Brain,
+  },
+  {
+    category: "Support",
+    title: "24/7 Customer Support",
+    blurb: "White glove support to maximize your experience.",
+    icon: Headphones,
+  },
+  {
+    category: "Auditability",
+    title: "Auditable by Design",
+    blurb: "Traceable actions and reproducible outputs with tamper-evident logs.",
+    icon: ScrollText,
+  },
 ];
 
-const ICONS = [Shield, Smartphone, Scale, Globe];
+// Icons are specified per card above to match content.
 
 export function CompactExplainers() {
   const scrollerRef = React.useRef<HTMLDivElement | null>(null);
@@ -60,7 +100,7 @@ export function CompactExplainers() {
   return (
     <Container outerClassName="bg-neutral-900" className="py-24 sm:py-28 lg:py-32">
       {/* Section title */}
-      <h2 className="section-title">Entreprise ready local-AI</h2>
+      <Typography as="h2" variant="sectionTitle">Enterprise-ready local AI</Typography>
 
       {/* Marquee wrapper (edge overlays stay fixed) */}
       <div
@@ -76,7 +116,7 @@ export function CompactExplainers() {
         >
           <div className="relative z-0 flex whitespace-nowrap gap-4 md:gap-6 lg:gap-8 min-w-max">
             {[...COMPACT, ...COMPACT].map((c, idx) => {
-              const Icon = ICONS[idx % ICONS.length];
+              const Icon = c.icon;
               return (
                 <div key={idx} className="flex-none">
                   <div className="w-56 md:w-60 lg:w-64 whitespace-normal rounded-none bg-neutral-800/40 p-4">
