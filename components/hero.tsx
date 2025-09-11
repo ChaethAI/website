@@ -28,15 +28,15 @@ export default function HeroContent() {
         </Typography>
 
         <Typography variant="subtitle" className="mb-6">
-          Augment All of Your Work on One Integrated, Secure Platform
+          Professional Class AI for Your Enterprise
         </Typography>
 
         <div className="flex items-center gap-4 flex-wrap">
           <Button variant="ghosty" size="lg">
-            Book a Demo
+            Get in touch
           </Button>
           <Button variant="primary" size="lg">
-            Get Started
+            Try now
           </Button>
         </div>
       </div>

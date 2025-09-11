@@ -135,3 +135,18 @@
   -webkit-line-clamp: 2;
   overflow: hidden;
 }
+
+/* Hide scrollbar utility for horizontal scrollers */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+/* Shared section title utility */
+.section-title {
+  /* Match previous sizes, reduce weight, increase spacing */
+  @apply text-center text-2xl sm:text-3xl lg:text-5xl font-light tracking-tight text-white mb-24 sm:mb-18 lg:mb-32;
+}

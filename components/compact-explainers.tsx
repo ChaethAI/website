@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import { Container } from "./container";
 import { Shield, Smartphone, Scale, Globe } from "lucide-react";
@@ -13,33 +15,83 @@ const COMPACT: CompactCard[] = [
   { category: "Workflows", title: "Agentic Workflows", blurb: "Expert-quality work product for complex flows without prompting." },
   { category: "Models", title: "Domain-Specific Models", blurb: "High-performing custom models for complex professional work." },
   { category: "Support", title: "24/7 Customer Support", blurb: "White glove support to maximize your experience." },
+  { category: "Auditability", title: "Auditable by Design", blurb: "Traceable actions and reproducible outputs with tamper-evident logs." },
 ];
 
 const ICONS = [Shield, Smartphone, Scale, Globe];
 
 export function CompactExplainers() {
+  const scrollerRef = React.useRef<HTMLDivElement | null>(null);
+  const [paused, setPaused] = React.useState(false);
+
+  React.useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+
+    let rafId: number;
+    const speed = 0.9; // pixels per frame (~54px/s at 60fps)
+
+    const step = () => {
+      const node = scrollerRef.current;
+      if (node && !paused) {
+        // Only advance if the content actually overflows horizontally
+        if (node.scrollWidth > node.clientWidth + 1) {
+          node.scrollLeft += speed;
+          const half = node.scrollWidth / 2;
+          if (node.scrollLeft >= half) node.scrollLeft -= half;
+        }
+      }
+      rafId = requestAnimationFrame(step);
+    };
+
+    rafId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(rafId);
+  }, [paused]);
+
+  const onWheel: React.WheelEventHandler<HTMLDivElement> = (e) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      e.preventDefault();
+      el.scrollLeft += e.deltaY;
+    }
+  };
+
   return (
     <Container outerClassName="bg-neutral-900" className="py-24 sm:py-28 lg:py-32">
+      {/* Section title */}
+      <h2 className="section-title">Entreprise ready local-AI</h2>
 
-      {/* Marquee wrapper */}
-      <div className="relative overflow-hidden group">
-        <div className="marquee relative z-0 flex whitespace-nowrap will-change-transform [animation-play-state:paused] group-hover:[animation-play-state:running] gap-4 md:gap-6 lg:gap-8">
-          {[...COMPACT, ...COMPACT].map((c, idx) => {
-            const Icon = ICONS[idx % ICONS.length];
-            return (
-              <div key={idx} className="flex-none">
-                <div className="w-56 md:w-60 lg:w-64 whitespace-normal rounded-none bg-neutral-800/40 p-4">
-                  <Icon className="h-6 w-6 text-white mb-2" />
-                  <h4 className="text-white text-base md:text-lg font-medium truncate">{c.title}</h4>
-                  {c.blurb && (
-                    <p className="text-neutral-300 text-sm mt-1 line-clamp-2">{c.blurb}</p>
-                  )}
+      {/* Marquee wrapper (edge overlays stay fixed) */}
+      <div
+        className="relative overflow-hidden group"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        {/* Scroll container handles horizontal scroll; vertical wheel mapped */}
+        <div
+          ref={scrollerRef}
+          onWheel={onWheel}
+          className="hide-scrollbar overflow-x-auto overflow-y-hidden"
+        >
+          <div className="relative z-0 flex whitespace-nowrap gap-4 md:gap-6 lg:gap-8 min-w-max">
+            {[...COMPACT, ...COMPACT].map((c, idx) => {
+              const Icon = ICONS[idx % ICONS.length];
+              return (
+                <div key={idx} className="flex-none">
+                  <div className="w-56 md:w-60 lg:w-64 whitespace-normal rounded-none bg-neutral-800/40 p-4">
+                    <Icon className="h-6 w-6 text-white mb-2" />
+                    <h4 className="text-white text-base md:text-lg font-medium truncate">{c.title}</h4>
+                    {c.blurb && (
+                      <p className="text-neutral-300 text-sm mt-1 line-clamp-2">{c.blurb}</p>
+                    )}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-        {/* Edge gradients tied to the scrolling frame */}
+        {/* Edge gradients tied to the non-scrolling frame */}
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 md:w-24 bg-gradient-to-r from-neutral-900 via-neutral-900/70 to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 md:w-24 bg-gradient-to-l from-neutral-900 via-neutral-900/70 to-transparent" />
       </div>

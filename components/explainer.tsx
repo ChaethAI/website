@@ -125,6 +125,7 @@ export default function ChaethExplainers() {
       outerClassName="bg-neutral-900"
       className="space-y-48 py-24 sm:py-28 lg:py-32"
     >
+      <h2 className="section-title">Augment All of Your Work on One Integrated, Secure Platform</h2>
       <MainExplainers />
     </Container>
   );
