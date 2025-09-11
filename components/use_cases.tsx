@@ -114,7 +114,7 @@ export default function UseCases() {
       {/* Pills + Carousel on md+ */}
       <div className="hidden md:block">
         {/* Pills row */}
-        <div className="mb-6 flex flex-wrap justify-center gap-3">
+        <div className="mb-6 flex flex-wrap justify-center gap-1">
           {pills.map((label, i) => {
             const active = i === index
             return (
