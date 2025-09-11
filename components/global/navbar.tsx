@@ -1,7 +1,6 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Typography } from "@/components/global/typography"
-import Logo from "@/components/logo"
+import Logo from "@/components/global/logo"
 
 export default function Navbar() {
   return (

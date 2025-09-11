@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils"
-import type { HTMLAttributes, JSX } from "react"
+import type { HTMLAttributes } from "react"
 
 interface TypographyProps extends HTMLAttributes<HTMLElement> {
   variant?: "h1" | "h2" | "h3" | "subtitle" | "body" | "caption" | "sectionTitle" | "sectionSubtitle"

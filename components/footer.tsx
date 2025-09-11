@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Container } from "./container";
+import { Container } from "./global/container";
 
 const DEMO_LINK = "https://demo.chaeth.com";
 const CONTACT_LINK = "mailto:hello@chaeth.com";

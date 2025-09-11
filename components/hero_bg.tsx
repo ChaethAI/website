@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useEffect, useRef, useState } from "react"
+import { useRef } from "react"
 import { MeshGradient } from "@paper-design/shaders-react"
 
 interface ShaderBackgroundProps {
@@ -11,25 +11,7 @@ interface ShaderBackgroundProps {
 
 export default function ShaderBackground({ children }: ShaderBackgroundProps) {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [isActive, setIsActive] = useState(false)
-
-  useEffect(() => {
-    const handleMouseEnter = () => setIsActive(true)
-    const handleMouseLeave = () => setIsActive(false)
-
-    const container = containerRef.current
-    if (container) {
-      container.addEventListener("mouseenter", handleMouseEnter)
-      container.addEventListener("mouseleave", handleMouseLeave)
-    }
-
-    return () => {
-      if (container) {
-        container.removeEventListener("mouseenter", handleMouseEnter)
-        container.removeEventListener("mouseleave", handleMouseLeave)
-      }
-    }
-  }, [])
+  // Hover state was previously tracked but unused; removing to avoid lint warnings
 
   return (
     <div ref={containerRef} className="min-h-screen bg-black relative overflow-hidden">

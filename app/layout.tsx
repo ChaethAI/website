@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/global/navbar";
+import { SiteContentProvider } from "./providers";
 import { GeistSans, GeistMono } from "geist/font";
 
 export const metadata: Metadata = {
@@ -128,8 +129,10 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased font-sans">
-        <Navbar />
-        {children}
+        <SiteContentProvider initialLocale="en">
+          <Navbar />
+          {children}
+        </SiteContentProvider>
       </body>
     </html>
   );

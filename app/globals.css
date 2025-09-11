@@ -154,3 +154,15 @@
     transition: none !important;
   }
 }
+
+/* Embla performance hints */
+.embla {
+  contain: layout paint;
+}
+.embla__container {
+  will-change: transform;
+}
+.embla__slide {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}

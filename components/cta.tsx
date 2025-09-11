@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Container } from "./container";
+import { Container } from "./global/container";
 import { Button } from "@/components/ui/button";
 import { Typography } from "@/components/global/typography";
 

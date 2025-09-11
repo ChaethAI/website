@@ -1,6 +1,6 @@
-import { Container } from "./container";
+import { Container } from "./global/container";
 import { Typography } from "@/components/global/typography";
-import Logo from "@/components/logo";
+import Logo from "@/components/global/logo";
 
 export default function Intro() {
   return (

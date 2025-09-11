@@ -1,5 +1,6 @@
+/* eslint-disable react/no-unescaped-entities */
 import type { Metadata } from "next";
-import { Container } from "@/components/container";
+import { Container } from "@/components/global/container";
 import { Typography } from "@/components/global/typography";
 
 export const metadata: Metadata = {
@@ -184,4 +185,3 @@ export default function TermsPage() {
     </Container>
   );
 }
-
