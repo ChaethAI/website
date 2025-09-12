@@ -60,7 +60,7 @@ export function CompactExplainers() {
   };
 
   return (
-    <Container outerClassName="bg-neutral-900" className="py-24 sm:py-28 lg:py-32">
+    <Container bg="dark">
       {/* Section title */}
       <Typography as="h2" variant="sectionTitle">{ui.headings.compact}</Typography>
 

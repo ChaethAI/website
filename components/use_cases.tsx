@@ -6,13 +6,14 @@ import { Typography } from "@/components/global/typography"
 import { useSiteContent } from "@/app/providers"
 import { use_reduced_motion, use_autoplay_timer } from "@/lib/anim"
 import { use_embla_basic } from "@/lib/carousel"
+import { use_pause_on_interact, use_uc_nav } from "@/lib/uc_state"
+import { UC_DELAY_MS } from "@/lib/uc"
+import { MobileUseCases } from "@/components/use_cases/mobile"
 import { AlternatingLayout } from "@/components/global/alternating_layout"
 import { ContentCard } from "@/components/global/content_card"
 import { ContentDialogTrigger } from "@/components/global/content_dialog"
 import { UseCasePill } from "@/components/use_cases/pill"
 import { GraphicPlaceholder } from "@/components/graphics/placeholder"
-
-const DELAY_MS = 10000
 
 export default function UseCases() {
   const { content } = useSiteContent()
@@ -20,7 +21,7 @@ export default function UseCases() {
   const reducedMotion = use_reduced_motion()
 
   // Embla basic wrapper
-  const { viewportRef, api, selected, scrollTo, scrollNext } = use_embla_basic({
+  const { viewportRef, api, selected, scrollTo, scrollNext, jumpTo } = use_embla_basic({
     loop: true,
     align: "center",
     containScroll: "trimSnaps",
@@ -28,18 +29,24 @@ export default function UseCases() {
   })
 
   // Autoplay driven by simple timer (CSS handles the pill progress)
-  use_autoplay_timer({ enabled: !!api && !reducedMotion, delayMs: DELAY_MS, onTick: () => scrollNext?.(), resetKey: selected })
+  const paused = use_pause_on_interact(api)
+  use_autoplay_timer({ enabled: !!api && !reducedMotion && !paused, delayMs: UC_DELAY_MS, onTick: () => scrollNext?.(), resetKey: selected })
+
+  // Deep-link navigation: #use-cases-<id>
+  const ids = React.useMemo(() => USE_CASES.map((x: any) => x.id), [USE_CASES])
+  use_uc_nav({ ids, goTo: (i) => jumpTo?.(i) })
 
   return (
-    <Container id="use-cases" outerClassName="bg-neutral-900" className="space-y-12 pt-24 pb-12 sm:pt-28 sm:pb-14 lg:pt-32 lg:pb-16">
-      <Typography as="h2" variant="sectionTitle">{ui.headings.useCases}</Typography>
+    <Container id="use-cases" bg="dark" className="space-y-12" pad_top="md" pad_bottom="xs">
+      <Typography as="h2" variant="sectionTitle" className="!mb-6">{ui.headings.useCases}</Typography>
+      <Typography variant="sectionSubtitle">Discover how Chaeth transforms customer interactions across various industries</Typography>
 
       {/* Pills + Carousel on md+ */}
       <div className="hidden md:block">
         {/* Pills row */}
         <div className="mb-6 flex flex-wrap justify-center gap-3">
           {pills.map((label, i) => (
-            <UseCasePill key={label} label={label} active={i === selected} onClick={() => scrollTo?.(i)} delayMs={DELAY_MS} reducedMotion={reducedMotion} />
+            <UseCasePill key={label} label={label} active={i === selected} onClick={() => scrollTo?.(i)} delayMs={UC_DELAY_MS} reducedMotion={reducedMotion || paused} />
           ))}
         </div>
 
@@ -56,6 +63,7 @@ export default function UseCases() {
               {USE_CASES.map((uc, i) => (
                 <div
                   key={uc.id}
+                  id={`use-cases-${uc.id}`}
                   className="embla__slide mr-8 w-full flex-shrink-0"
                   data-active={i === selected}
                   role="group"
@@ -80,22 +88,14 @@ export default function UseCases() {
         </div>
       </div>
 
-      {/* Mobile stacked fallback */}
-      <div className="space-y-12 md:hidden">
-        {USE_CASES.map((uc) => (
-          <AlternatingLayout
-            key={uc.id}
-            leftGraphic={uc.graphicSide === "left"}
-            graphic={<GraphicPlaceholder label={uc.graphicLabel} />}
-            content={
-              <ContentCard item={uc}>
-                {useCaseDialogs[uc.id] ? (
-                  <ContentDialogTrigger dialog={useCaseDialogs[uc.id]} label={ui.readMore} />
-                ) : null}
-              </ContentCard>
-            }
-          />
-        ))}
+      {/* Mobile: pills grid + swipeable carousel */}
+      <div className="md:hidden">
+        <MobileUseCases
+          items={USE_CASES}
+          pills={pills}
+          dialogs={useCaseDialogs}
+          readMoreLabel={ui.readMore}
+        />
       </div>
     </Container>
   )

@@ -1,6 +1,6 @@
 "use client"
 
-import ShaderBackground from "@/components/hero_bg"
+import ShaderBackground from "@/components/graphics/hero_bg"
 import { Button } from "@/components/ui/button"
 import { Typography } from "@/components/global/typography"
 import Link from "next/link"

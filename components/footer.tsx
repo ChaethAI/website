@@ -9,7 +9,7 @@ export default function Footer() {
   const footer = content.footer;
   return (
     <footer className="bg-neutral-950 text-neutral-200">
-      <Container className="py-10">
+      <Container pad_y="none" className="py-10">
         <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-6">
           <div className="text-center md:text-left">
             <div className="text-white font-medium">{footer.brandName}</div>

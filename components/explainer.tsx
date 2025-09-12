@@ -39,11 +39,7 @@ export default function ChaethExplainers() {
   const { content } = useSiteContent();
   const { ui } = content;
   return (
-    <Container
-      id="features"
-      outerClassName="bg-neutral-900"
-      className="space-y-48 py-24 sm:py-28 lg:py-32"
-    >
+    <Container id="features" bg="dark" className="space-y-48">
       <Typography as="h2" variant="sectionTitle">
         {ui.headings.features}
       </Typography>

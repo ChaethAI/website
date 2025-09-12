@@ -4,8 +4,8 @@ const en: SiteContent = {
   navbar: {
     links: [
       { label: "Features", href: "#features" },
-      { label: "Chat", href: "https://demo.chaeth.com", target: "_blank", rel: "noopener noreferrer" },
-      { label: "Hosting", href: "#hosting" },
+      { label: "Use Cases", href: "#use-cases" },
+      { label: "Pricing", href: "#pricing" },
     ],
     action: { label: "Try Now", href: "https://demo.chaeth.com", target: "_blank", rel: "noopener noreferrer" },
   },
@@ -19,8 +19,8 @@ const en: SiteContent = {
     readMore: "Read more",
     headings: {
       features: "Augment All of Your Work on One Integrated, Secure Platform",
-      useCases: "How Local AI Helps Your Teams",
-      compact: "Enterprise-ready local AI",
+      useCases: "Use Cases",
+      compact: "Enterprise-ready Local-AI",
       caseStudies: "Case Studies",
     },
   },
@@ -205,7 +205,7 @@ const en: SiteContent = {
     tagline: "Local‑first AI in Thailand",
     links: [
       { label: "Features", href: "#features" },
-      { label: "Hosting", href: "#hosting" },
+      { label: "Pricing", href: "#pricing" },
       { label: "Demo", href: "https://demo.chaeth.com", target: "_blank", rel: "noopener noreferrer" },
       { label: "Contact", href: "mailto:hello@chaeth.com" },
       { label: "Terms", href: "/terms" },

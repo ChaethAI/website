@@ -9,11 +9,7 @@ import { IconBullet } from "@/components/global/icon_bullet";
 export default function Intro() {
   const { content } = useSiteContent();
   return (
-    <Container
-      id="intro"
-      outerClassName="relative overflow-hidden bg-neutral-950"
-      className="py-16 sm:py-20 lg:py-28"
-    >
+    <Container id="intro" outerClassName="relative overflow-hidden" bg="darker" pad_y="sm">
       {/* Background: layered, smooth, GPU-friendly */}
       <div
         aria-hidden

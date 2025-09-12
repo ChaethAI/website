@@ -48,7 +48,7 @@ export default function CaseStudies({
   };
 
   return (
-    <Container outerClassName="bg-neutral-900" className="py-24 sm:py-28 lg:py-32">
+    <Container bg="dark">
       <Typography as="h2" variant="sectionTitle">
         {heading}
       </Typography>
@@ -174,4 +174,3 @@ export default function CaseStudies({
     </Container>
   );
 }
-

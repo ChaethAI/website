@@ -7,7 +7,7 @@ import { PlanCard } from "@/components/pricing/plan_card";
 
 export default function PricingPlans() {
   // Keep copy local for fast iteration
-  const title = "Hosting Plans";
+  const title = "Pricing Plans";
   const subtitle = "Scale intelligence in Thailand.";
 
   const shared = {
@@ -43,17 +43,19 @@ export default function PricingPlans() {
   } as const;
 
   return (
-    <Container id="hosting" outerClassName="bg-neutral-900" className="py-24 sm:py-28 lg:py-32">
+    <Container id="pricing" bg="dark">
       <Typography as="h2" variant="sectionTitle">{title}</Typography>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 place-items-center">
         {/* Shared */}
-        <div className="aspect-square w-full">
+        {/* On mobile use content height; keep square only on md+ */}
+        <div className="w-full md:aspect-square">
           <PlanCard title={shared.title} features={shared.features} buttonLabel={shared.buttonLabel} />
         </div>
 
         {/* Enterprise */}
-        <div className="aspect-square w-full">
+        {/* On mobile use content height; keep square only on md+ */}
+        <div className="w-full md:aspect-square">
           <PlanCard title={enterprise.title} features={enterprise.features} buttonLabel={enterprise.buttonLabel} />
         </div>
       </div>

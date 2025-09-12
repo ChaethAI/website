@@ -28,10 +28,7 @@ export default function FinalCTA() {
   };
 
   return (
-    <Container
-      outerClassName="bg-neutral-900"
-      className="pt-12 pb-24 sm:pt-14 sm:pb-28 lg:pt-16 lg:pb-32 text-center"
-    >
+    <Container bg="dark" pad_top="xs" pad_bottom="md" className="text-center">
       {/* Gradient border wrapper */}
       <div className="relative mx-auto max-w-2xl rounded-3xl p-[1px] bg-gradient-to-r from-violet-500/30 via-fuchsia-500/20 to-cyan-400/30 shadow-[0_0_0_1px_rgba(255,255,255,0.06)]">
         <Card

@@ -16,8 +16,8 @@ export default function Logo({ variant = "white" }: LogoProps) {
     : "text-black"
 
   const textClass = variant === "white"
-    ? "text-white/95 font-extrabold transition-all duration-300 ease-in-out"
-    : "text-black/95 font-extrabold transition-all duration-300 ease-in-out"
+    ? "text-white/95 transition-all duration-300 ease-in-out"
+    : "text-black/95 transition-all duration-300 ease-in-out"
 
   return (
     <Link
@@ -27,12 +27,12 @@ export default function Logo({ variant = "white" }: LogoProps) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <svg
-        width="56"
-        height="56"
+        width="40"
+        height="40"
         viewBox="0 0 17 17"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className={`${logoClass} transition-transform duration-300 ease-in-out group-hover:scale-105`}
+        className={`${logoClass} w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 transition-transform duration-300 ease-in-out group-hover:scale-105`}
         aria-hidden
       >
         <path
@@ -50,7 +50,7 @@ export default function Logo({ variant = "white" }: LogoProps) {
       </svg>
       <div className="relative overflow-hidden">
         <Typography
-          variant="h3"
+          variant="logo"
           className={`${textClass} transform transition-transform duration-300 ease-in-out ${
             isHovered ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'
           }`}
@@ -58,7 +58,7 @@ export default function Logo({ variant = "white" }: LogoProps) {
           chaeth
         </Typography>
         <Typography
-          variant="h3"
+          variant="logo"
           className={`${textClass} absolute top-0 left-0 transform transition-transform duration-300 ease-in-out ${
             isHovered ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
           }`}

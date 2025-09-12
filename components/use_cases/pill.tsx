@@ -19,7 +19,7 @@ export function UseCasePill({ label, active, onClick, delayMs = 10000, reducedMo
       variant="ghosty"
       data-active={active}
       className={[
-        "relative overflow-hidden rounded-full px-3 py-1.5",
+        "relative overflow-hidden rounded-none px-3 py-1.5",
         "transition-colors whitespace-nowrap focus:outline-none",
         "border border-white/15",
         "text-white hover:text-neutral-900",
@@ -35,4 +35,3 @@ export function UseCasePill({ label, active, onClick, delayMs = 10000, reducedMo
     </Button>
   )
 }
-
