@@ -128,6 +128,14 @@
 }
 .marquee { animation: marquee 24s linear infinite; }
 
+/* Use Cases – CSS-driven progress bar (no JS per frame) */
+@keyframes uc_progress {
+  from { transform: translateX(-101%); }
+  to { transform: translateX(0); }
+}
+.uc__bar { transform: translateX(-101%); will-change: transform; }
+[data-active="true"] .uc__bar { animation: uc_progress var(--delay, 10000ms) linear; }
+
 /* Simple line clamp utilities (no plugin needed) */
 .line-clamp-2 {
   display: -webkit-box;
@@ -153,6 +161,7 @@
   .transition-all {
     transition: none !important;
   }
+  [data-active="true"] .uc__bar { animation: none !important; }
 }
 
 /* Embla performance hints */
@@ -166,3 +175,8 @@
   backface-visibility: hidden;
   transform: translateZ(0);
 }
+
+/* While scrolling, reduce hit testing to keep main thread free */
+/* removed in use_cases logic */
+
+/* Pre-render all slides to avoid visible 'pop-in' when changing */

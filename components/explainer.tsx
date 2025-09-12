@@ -3,7 +3,10 @@
 import * as React from "react";
 import { Container } from "./global/container";
 import { Typography } from "@/components/global/typography";
-import { AlternatingExplainer } from "@/components/global/alternating-layout";
+import { AlternatingLayout } from "@/components/global/alternating_layout";
+import { ContentCard } from "@/components/global/content_card";
+import { ContentDialogTrigger } from "@/components/global/content_dialog";
+import ExplainerGraphic from "@/components/graphics/explainer_graphics";
 import { useSiteContent } from "@/app/providers";
 
 // types and content moved out to @/types/content and @/content/site
@@ -14,7 +17,18 @@ export function MainExplainers() {
   return (
     <div className="space-y-48">
       {explainers.map((m) => (
-        <AlternatingExplainer key={m.id} item={m} dialogs={explainerDialogs} readMoreLabel={ui.readMore} />
+        <AlternatingLayout
+          key={m.id}
+          leftGraphic={m.graphicSide === "left"}
+          graphic={<ExplainerGraphic id={m.id} />}
+          content={
+            <ContentCard item={m}>
+              {explainerDialogs[m.id] ? (
+                <ContentDialogTrigger dialog={explainerDialogs[m.id]} label={ui.readMore} />
+              ) : null}
+            </ContentCard>
+          }
+        />
       ))}
     </div>
   );

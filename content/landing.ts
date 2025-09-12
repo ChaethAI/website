@@ -1,6 +1,20 @@
 import { SiteContent } from "@/types/content";
 
 const en: SiteContent = {
+  navbar: {
+    links: [
+      { label: "Features", href: "#features" },
+      { label: "Chat", href: "https://demo.chaeth.com", target: "_blank", rel: "noopener noreferrer" },
+      { label: "Hosting", href: "#hosting" },
+    ],
+    action: { label: "Try Now", href: "https://demo.chaeth.com", target: "_blank", rel: "noopener noreferrer" },
+  },
+  hero: {
+    badge: "🇹🇭 Data residency in Thailand",
+    title: { preEmphasis: "Local-first", main: "AI", postLine: "for Thai enterprises" },
+    subtitle: "Professional Class AI for Your Enterprise",
+    demo: { label: "Try now", href: "https://demo.chaeth.com", target: "_blank", rel: "noopener noreferrer" },
+  },
   ui: {
     readMore: "Read more",
     headings: {
@@ -10,6 +24,11 @@ const en: SiteContent = {
       caseStudies: "Case Studies",
     },
   },
+  introHighlights: [
+    { id: "thai_language", label: "Thai / English language", iconKey: "thai" },
+    { id: "pdpa", label: "PDPA compliance", iconKey: "pdpa" },
+    { id: "enterprise_security", label: "Enterprise security", iconKey: "shield" },
+  ],
   useCases: [
     {
       id: "exec",
@@ -91,28 +110,25 @@ const en: SiteContent = {
       id: "hosted",
       category: "Residency",
       title: "Hosted in Thailand",
-      sentence: "Deployed on Thai cloud/GPU providers; data at rest stays in Thailand. Shared or dedicated options",
+      sentence: "Deployed on Thai cloud/GPU providers; data at rest and in transit all encrypted in Thailand. Shared or dedicated options",
       href: "/residency",
       graphicSide: "left",
-      graphicLabel: "Thailand + lock",
     },
     {
       id: "privacy",
       category: "Privacy",
-      title: "Your data stays yours",
-      sentence: "No training on your data by default, with retention controls and a full audit trail.",
+      title: "No training on your data",
+      sentence: "Your data stays yours, with retention controls and a full audit trail.",
       href: "/privacy",
       graphicSide: "right",
-      graphicLabel: "No training icon",
     },
     {
       id: "sso",
       category: "Identity",
       title: "Single sign‑on (SSO) that fits",
-      sentence: "SAML 2.0 / OIDC integration, optional SCIM or LDAP sync, and granular RBAC.",
+      sentence: "SAML 2.0 / OIDC integration, regular social SSO (e.g., Google), optional SCIM or LDAP sync, and granular RBAC.",
       href: "/sso",
       graphicSide: "left",
-      graphicLabel: "SSO flow",
     },
   ],
   explainerDialogs: {
@@ -122,9 +138,9 @@ const en: SiteContent = {
         "Hosted on Thai cloud and GPU servers so data at rest remains in Thailand by default. We host and manage the AI models ourselves, offering shared or dedicated servers and GPUs based on your workload needs and performance expectations. Scaling is handled automatically to match your usage patterns. Options include VPC peering or Private Link, private subnets with no public egress, and customer‑managed keys (KMS/BYOK) where supported by your provider. Encryption in transit (TLS 1.2+) and at rest (AES‑256) are standard. Controls support PDPA (Thailand) data residency and cross‑border transfer requirements (e.g., defined purposes, consent or other legal basis). Retention policies, in‑country disaster recovery, and detailed audit logs support compliance reviews.",
     },
     privacy: {
-      title: "Your data stays yours",
+      title: "No training on your data",
       body:
-        "No training on your prompts or outputs by default—your data stays your data. Retrieval is restricted to the sources you configure and can be kept in your network. Fine‑grained retention windows, export, and deletion help meet PDPA obligations (consent, purpose limitation, DSAR). Full audit trail captures who accessed what, when, and with which model/integration. Optional safeguards include prompt/output redaction, content logging controls, DLP checks, and outbound egress restrictions so information never leaves your control.",
+        "No training on your prompts or outputs, your data stays your data. Retrieval is restricted to the sources you configure and can be kept in your network. Fine‑grained retention windows, export, and deletion help meet PDPA obligations (consent, purpose limitation, DSAR). Full audit trail captures who accessed what, when, and with which model/integration. Optional safeguards include prompt/output redaction, content logging controls, DLP checks, and outbound egress restrictions so information never leaves your control.",
     },
     sso: {
       title: "Single sign‑on (SSO) that fits",
@@ -179,6 +195,24 @@ const en: SiteContent = {
       href: "#",
     },
   ],
+  cta: {
+    title: "Interested to unleash AI across your organization?",
+    subtitle: "Tell us about your environment and goals. Let's plan a pilot.",
+    primary: { label: "Get in touch", href: "mailto:hello@chaeth.com" },
+  },
+  footer: {
+    brandName: "Chaeth",
+    tagline: "Local‑first AI in Thailand",
+    links: [
+      { label: "Features", href: "#features" },
+      { label: "Hosting", href: "#hosting" },
+      { label: "Demo", href: "https://demo.chaeth.com", target: "_blank", rel: "noopener noreferrer" },
+      { label: "Contact", href: "mailto:hello@chaeth.com" },
+      { label: "Terms", href: "/terms" },
+      { label: "Privacy", href: "/privacy" },
+    ],
+    legal: { copyrightBrand: "Chaeth" },
+  },
 };
 
 export function getContent(locale: string | undefined): SiteContent {

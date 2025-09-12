@@ -50,7 +50,7 @@ function getVariantStyles(variant: string) {
     case "caption":
       return "text-sm font-light text-white/90"
     case "sectionTitle":
-      return "text-center text-2xl sm:text-3xl lg:text-5xl font-light tracking-tight text-white mb-24 sm:mb-18 lg:mb-32"
+      return "text-center text-2xl sm:text-3xl lg:text-5xl font-light tracking-tight text-white mb-18 sm:mb-12 lg:mb-24"
     case "sectionSubtitle":
       return "text-center text-base sm:text-lg text-neutral-200 leading-relaxed max-w-3xl mx-auto mb-12 sm:mb-14"
     default:
