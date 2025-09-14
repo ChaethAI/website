@@ -11,6 +11,7 @@ import { ContentCard } from "@/components/global/content_card"
 import { ContentDialogTrigger } from "@/components/global/content_dialog"
 import { UseCasePill } from "@/components/use_cases/pill"
 import { GraphicPlaceholder } from "@/components/graphics/placeholder"
+import { ExecBriefingDemo } from "@/components/graphics/exec_briefing_demo"
 import { use_uc_nav } from "@/lib/uc_store"
 
 export default function UseCases() {
@@ -88,7 +89,13 @@ export default function UseCases() {
               >
                 <AlternatingLayout
                   leftGraphic={uc.graphicSide === "left"}
-                  graphic={<GraphicPlaceholder label={uc.graphicLabel} />}
+                  graphic={
+                    uc.id === "exec" ? (
+                      <ExecBriefingDemo active={i === selected} />
+                    ) : (
+                      <GraphicPlaceholder label={uc.graphicLabel} />
+                    )
+                  }
                   content={
                     <ContentCard item={uc}>
                       {useCaseDialogs[uc.id] ? (
