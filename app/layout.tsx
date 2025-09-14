@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/global/navbar";
 import { SiteContentProvider } from "./providers";
+import { UseCaseNavProvider } from "@/lib/uc_store.tsx";
 import { GeistSans, GeistMono } from "geist/font";
 
 export const metadata: Metadata = {
@@ -129,10 +130,12 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased font-sans">
-        <SiteContentProvider initialLocale="en">
-          <Navbar />
-          {children}
-        </SiteContentProvider>
+        <UseCaseNavProvider>
+          <SiteContentProvider initialLocale="en">
+            <Navbar />
+            {children}
+          </SiteContentProvider>
+        </UseCaseNavProvider>
       </body>
     </html>
   );

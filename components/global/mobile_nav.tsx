@@ -5,11 +5,13 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { useSiteContent } from "@/app/providers"
 import { Menu, ChevronDownIcon } from "lucide-react"
+import { use_uc_nav } from "@/lib/uc_store"
 
 export default function MobileNav() {
   const { content } = useSiteContent()
   const [open, setOpen] = React.useState(false)
   const [useCasesOpen, setUseCasesOpen] = React.useState(false)
+  const { set_active_id } = use_uc_nav()
 
   const FEATURES_HREF = "#features"
   const USE_CASES_HREF = "#use-cases"
@@ -47,8 +49,17 @@ export default function MobileNav() {
               {useCasesOpen && (
                 <div className="pl-3 space-y-1">
                   {content.useCases?.map((uc) => (
-                    <Button key={uc.id} variant="ghost" className="w-full justify-start pl-4" asChild onClick={() => setOpen(false)}>
-                      <Link href={`#use-cases-${uc.id}`}>{uc.category}</Link>
+                    <Button
+                      key={uc.id}
+                      variant="ghost"
+                      className="w-full justify-start pl-4"
+                      asChild
+                      onClick={() => {
+                        set_active_id(uc.id)
+                        setOpen(false)
+                      }}
+                    >
+                      <Link href="#use-cases">{uc.category}</Link>
                     </Button>
                   ))}
                 </div>
