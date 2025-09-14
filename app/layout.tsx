@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/global/navbar";
 import { SiteContentProvider } from "./providers";
-import { UseCaseNavProvider } from "@/lib/uc_store.tsx";
+import { UseCaseNavProvider } from "@/lib/uc_store";
 import { GeistSans, GeistMono } from "geist/font";
 
 export const metadata: Metadata = {

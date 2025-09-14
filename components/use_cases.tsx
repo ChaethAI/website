@@ -11,7 +11,7 @@ import { ContentCard } from "@/components/global/content_card"
 import { ContentDialogTrigger } from "@/components/global/content_dialog"
 import { UseCasePill } from "@/components/use_cases/pill"
 import { GraphicPlaceholder } from "@/components/graphics/placeholder"
-import { use_uc_nav } from "@/lib/uc_store.tsx"
+import { use_uc_nav } from "@/lib/uc_store"
 
 export default function UseCases() {
   const { content } = useSiteContent()
