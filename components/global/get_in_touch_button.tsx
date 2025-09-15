@@ -54,7 +54,7 @@ export function GetInTouchButton({
     }
   }
 
-  const borderColor = getBorderColor(variant)
+  const borderColor = getBorderColor(variant ?? "primary")
 
   return (
     <div className="relative group inline-block">
