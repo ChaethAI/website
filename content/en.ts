@@ -259,8 +259,4 @@ const en: SiteContent = {
   },
 };
 
-export function getContent(locale: string | undefined): SiteContent {
-  // For now only English is populated; fallback always returns English.
-  // Hook here for future `th` content.
-  return en;
-}
+export default en;

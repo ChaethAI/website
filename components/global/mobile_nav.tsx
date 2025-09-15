@@ -8,9 +8,10 @@ import { Menu, ChevronDownIcon } from "lucide-react"
 import { use_uc_nav } from "@/lib/uc_store"
 
 export default function MobileNav() {
-  const { content } = useSiteContent()
+  const { content, locale, setLocale } = useSiteContent()
   const [open, setOpen] = React.useState(false)
   const [useCasesOpen, setUseCasesOpen] = React.useState(false)
+  const [langOpen, setLangOpen] = React.useState(false)
   const { set_active_id } = use_uc_nav()
 
   const FEATURES_HREF = "#features"
@@ -74,6 +75,45 @@ export default function MobileNav() {
                 <Link href={DEMO_HREF} target="_blank" rel="noopener noreferrer">{content.navbar.action.label}</Link>
               </Button>
             ) : null}
+
+            {/* Language section */}
+            <div className="space-y-2">
+              <Button
+                variant="ghost"
+                className="w-full justify-between"
+                onClick={() => setLangOpen(!langOpen)}
+              >
+                Language: {locale.toUpperCase()}
+                <ChevronDownIcon className="size-4" />
+              </Button>
+              {langOpen && (
+                <div className="pl-3 space-y-1">
+                  {locale === 'en' ? (
+                    <Button
+                      variant="ghost"
+                      className="w-full justify-start pl-4"
+                      onClick={() => {
+                        setLocale('th')
+                        setOpen(false)
+                      }}
+                    >
+                      ไทย (TH)
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="ghost"
+                      className="w-full justify-start pl-4"
+                      onClick={() => {
+                        setLocale('en')
+                        setOpen(false)
+                      }}
+                    >
+                      English (EN)
+                    </Button>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}

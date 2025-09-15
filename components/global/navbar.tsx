@@ -9,6 +9,7 @@ import { GetInTouchButton } from "@/components/global/get_in_touch_button"
 import MobileNav from "@/components/global/mobile_nav"
 import { ChevronDownIcon } from "lucide-react"
 import { use_uc_nav } from "@/lib/uc_store"
+import LanguageSwitcher from "@/components/global/language_switcher"
 
 export default function Navbar() {
   const { content } = useSiteContent()
@@ -162,6 +163,10 @@ export default function Navbar() {
               <Link href={content.navbar.action.href} target={content.navbar.action.target} rel={content.navbar.action.rel}>{content.navbar.action.label}</Link>
             </Button>
           ) : null}
+          {/* Language switcher */}
+          <div className="hidden md:block">
+            <LanguageSwitcher />
+          </div>
           <GetInTouchButton variant="primary" size="lg" />
         </div>
       </div>

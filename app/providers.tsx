@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import type { Locale, SiteContent } from "@/types/content";
-import { getContent } from "@/content/en";
+import { get_default_content, load_locale_content } from "@/lib/content_loader";
 
 type SiteContentContextValue = {
   locale: Locale;
@@ -19,13 +19,61 @@ export function SiteContentProvider({
   children: React.ReactNode;
   initialLocale?: Locale;
 }) {
-  const [locale, setLocale] = React.useState<Locale>(initialLocale);
+  const [locale, setLocaleState] = React.useState<Locale>(initialLocale);
+  const [content, setContent] = React.useState<SiteContent>(get_default_content());
 
-  const content = React.useMemo(() => getContent(locale), [locale]);
+  // Set html lang attribute when locale changes
+  React.useEffect(() => {
+    if (typeof document !== "undefined") {
+      document.documentElement.lang = locale;
+    }
+  }, [locale]);
+
+  // Initialize from localStorage or simple client heuristics (language/timezone)
+  React.useEffect(() => {
+    let preferred: Locale | null = null;
+    try {
+      const stored = localStorage.getItem("locale");
+      if (stored === "en" || stored === "th") preferred = stored;
+    } catch {}
+
+    if (!preferred) {
+      const navLang = typeof navigator !== "undefined" ? navigator.language?.toLowerCase() : "";
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      if (navLang?.startsWith("th") || tz === "Asia/Bangkok") {
+        preferred = "th";
+      } else {
+        preferred = initialLocale;
+      }
+    }
+
+    if (preferred === "th") {
+      load_locale_content("th").then((c) => setContent(c)).catch(() => setContent(get_default_content()));
+    } else {
+      setContent(get_default_content());
+    }
+    setLocaleState(preferred);
+    try {
+      localStorage.setItem("locale", preferred);
+    } catch {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const setLocale = React.useCallback((next: Locale) => {
+    setLocaleState(next);
+    try {
+      localStorage.setItem("locale", next);
+    } catch {}
+    if (next === "th") {
+      load_locale_content("th").then((c) => setContent(c)).catch(() => setContent(get_default_content()));
+    } else {
+      setContent(get_default_content());
+    }
+  }, []);
 
   const value = React.useMemo(
     () => ({ locale, setLocale, content }),
-    [locale, content]
+    [locale, setLocale, content]
   );
 
   return <SiteContentContext.Provider value={value}>{children}</SiteContentContext.Provider>;
@@ -36,4 +84,3 @@ export function useSiteContent() {
   if (!ctx) throw new Error("useSiteContent must be used within SiteContentProvider");
   return ctx;
 }
-
