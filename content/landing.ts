@@ -23,87 +23,16 @@ const en: SiteContent = {
       compact: "Enterprise-ready Local-AI",
       caseStudies: "Case Studies",
     },
+    subtitles: {
+      useCases: "Discover how Chaeth transforms customer interactions across various industries",
+    },
   },
   introHighlights: [
     { id: "thai_language", label: "Thai / English language", iconKey: "thai" },
     { id: "pdpa", label: "PDPA compliance", iconKey: "pdpa" },
     { id: "enterprise_security", label: "Enterprise security", iconKey: "shield" },
   ],
-  useCases: [
-    {
-      id: "exec",
-      category: "Executive",
-      title: "Executive & Knowledge Work Acceleration",
-      sentence: "Briefings, meeting prep, and first‑draft docs in minutes.",
-      href: "#",
-      graphicSide: "right",
-      graphicLabel: "Executive briefings",
-    },
-    {
-      id: "sales",
-      category: "Sales",
-      title: "Sales & Marketing Acceleration",
-      sentence: "Faster RFPs, follow‑ups, and on‑brand campaign drafts.",
-      href: "#",
-      graphicSide: "right",
-      graphicLabel: "Sales & campaigns",
-    },
-    {
-      id: "dev",
-      category: "Developer",
-      title: "Software Development & IT Productivity",
-      sentence: "Speed up coding, debugging, reviews, and runbooks.",
-      href: "#",
-      graphicSide: "right",
-      graphicLabel: "Code & runbooks",
-    },
-    {
-      id: "support",
-      category: "Support",
-      title: "Customer Support & Internal Operations",
-      sentence: "Suggested replies, triage, and rapid policy lookups.",
-      href: "#",
-      graphicSide: "right",
-      graphicLabel: "Agent assist",
-    },
-    {
-      id: "analysts",
-      category: "Analysts",
-      title: "Data Analysis & Reporting for Non-Analysts",
-      sentence: "Ask spreadsheets, auto‑SQL, and instant charts and summaries.",
-      href: "#",
-      graphicSide: "right",
-      graphicLabel: "Sheets to insights",
-    },
-  ],
-  useCasePills: ["Executive", "Sales", "Developer", "Support", "Analysts"],
-  useCaseDialogs: {
-    exec: {
-      title: "Executive & Knowledge Work Acceleration",
-      body:
-        "Who: executives, chiefs of staff, PMs, analysts. What: briefings, meeting prep, first‑draft docs and policy memos, decision tables, board packs, email replies, and Thai/English translation. Why AI: faster research and ideation with structured outputs on demand and fewer handoffs. Proof: OpenAI’s enterprise guides highlight ‘research’ and ‘ideation/strategy’ as core primitives and show document uploads + web research producing structured briefings quickly. Source: OpenAI CDN.",
-    },
-    sales: {
-      title: "Sales & Marketing Acceleration",
-      body:
-        "Who: sales, presales, marketing. What: RFP answers, proposals, discovery call summaries, follow‑ups, campaign briefs, localized copy, CRM notes. Why AI: reduces drafting time, keeps tone on‑brand, reuses best content, and localizes for Thai buyers. Proof: OpenAI case examples include teams drafting campaigns and sales materials; Promega saved 135 hours in six months on first‑draft email campaigns. Source: OpenAI CDN.",
-    },
-    dev: {
-      title: "Software Development & IT Productivity",
-      body:
-        "Who: engineers, DevOps, IT service desks. What: code generation in unfamiliar languages, debugging, API review, doc writing, infra scripts, runbook lookups, incident summaries. Why AI: shortens feedback loops and unblocks tasks that usually wait for specialists. Proof: OpenAI positions ‘coding’ as a core primitive and showcases engineering teams using ChatGPT to speed debugging and syntax in non‑intuitive stacks. Source: OpenAI CDN.",
-    },
-    support: {
-      title: "Customer Support & Internal Operations",
-      body:
-        "Who: contact center, operations, HR help desks, finance ops. What: agent assist during chats, suggested replies, ticket triage, policy lookups, resolution summaries, weekly ops digests. Why AI: faster first response, higher first‑contact resolution, standardized tone. Proof: ‘Content creation’ and ‘Automations’ primitives map cleanly to reply drafting, summarization, and recurring digests; teams standardize prompts and policies, then automate repeatable workflows. Source: OpenAI CDN.",
-    },
-    analysts: {
-      title: "Data Analysis & Reporting for Non-Analysts",
-      body:
-        "Who: BI‑light users across every team. What: spreadsheet Q&A, SQL generation, quick charts, narrative summaries for dashboards, weekly business updates. Why AI: turns messy sheets and screenshots into insights and presentable outputs without waiting on data teams. Proof: OpenAI highlights ‘data analysis’ as a core primitive; examples include automating Python to reconcile large datasets and generating weekly performance reports. Source: OpenAI CDN.",
-    },
-  },
+  
 
   explainers: [
     {
@@ -165,6 +94,121 @@ const en: SiteContent = {
     { id: "support", category: "Support", title: "24/7 Customer Support", blurb: "White glove support to maximize your experience.", iconKey: "headphones" },
     { id: "audit", category: "Auditability", title: "Auditable by Design", blurb: "Traceable actions and reproducible outputs with tamper-evident logs.", iconKey: "scrollText" },
   ],
+
+  useCases: [
+    {
+      id: "exec",
+      category: "Executive",
+      title: "Executive & Knowledge Work Acceleration",
+      sentence: "Briefings, meeting prep, and first‑draft docs in minutes.",
+      href: "#",
+      graphicSide: "right",
+      graphicLabel: "Executive briefings",
+    },
+    {
+      id: "sales",
+      category: "Sales",
+      title: "Sales & Marketing Acceleration",
+      sentence: "Faster RFPs, follow‑ups, and on‑brand campaign drafts.",
+      href: "#",
+      graphicSide: "right",
+      graphicLabel: "Sales & campaigns",
+    },
+    {
+      id: "dev",
+      category: "Developer",
+      title: "Software Development & IT Productivity",
+      sentence: "Speed up coding, debugging, reviews, and runbooks.",
+      href: "#",
+      graphicSide: "right",
+      graphicLabel: "Code & runbooks",
+    },
+    {
+      id: "support",
+      category: "Support",
+      title: "Customer Support & Internal Operations",
+      sentence: "Suggested replies, triage, and rapid policy lookups.",
+      href: "#",
+      graphicSide: "right",
+      graphicLabel: "Agent assist",
+    },
+    {
+      id: "analysts",
+      category: "Analysts",
+      title: "Data Analysis & Reporting for Non-Analysts",
+      sentence: "Ask spreadsheets, auto‑SQL, and instant charts and summaries.",
+      href: "#",
+      graphicSide: "right",
+      graphicLabel: "Sheets to insights",
+    },
+  ],
+  useCasePills: ["Executive", "Sales", "Developer", "Support", "Analysts"],
+  useCaseDialogs: {
+    exec: {
+      title: "Empowering Executives with Strategic AI",
+      body:
+        "Who: CEOs, COOs, chiefs of staff, program managers, and analysts. What: AI crafts concise briefings, preps for high-stakes meetings, drafts policy memos, builds decision matrices, creates board presentations, and translates documents (e.g., Thai to English). How it helps: AI slashes research time, distills complex data into actionable insights, and automates repetitive tasks like email drafting. Imagine preparing a board deck in hours instead of days, with AI pulling market trends and competitor analysis instantly. Why it matters: Executives make faster, sharper decisions without drowning in prep work, staying focused on strategy. Example: A CEO uses AI to summarize a 50-page industry report into a one-page brief in minutes, then generates a tailored presentation for investors, saving a full day’s work."
+    },
+    sales: {
+      title: "Supercharging Sales & Marketing with AI",
+      body:
+        "Who: Sales reps, account managers, marketing teams, and presales. What: AI generates polished RFP responses, personalized proposals, discovery call summaries, follow-up emails, campaign ideas, and localized content (e.g., Thai market copy). How it helps: AI cuts drafting time by up to 70%, ensures brand-consistent messaging, and reuses top-performing content. Picture a sales rep closing deals faster by using AI to tailor a proposal for a Thai client in real time, or a marketer launching a campaign with AI-generated visuals and copy in hours. Why it matters: Teams hit quotas faster, engage buyers with precision, and scale personalized outreach. Example: A marketing team uses AI to create a multilingual email campaign, saving 20 hours a week while boosting open rates by 15%."
+    },
+    dev: {
+      title: "Accelerating Development & IT with AI",
+      body:
+        "Who: Software engineers, DevOps, IT admins, and service desk teams. What: AI writes code in unfamiliar languages, debugs errors, reviews APIs, drafts technical docs, automates infrastructure scripts, and summarizes incidents. How it helps: AI speeds up coding by suggesting fixes in seconds, unblocks teams from waiting on specialists, and simplifies complex tasks like writing Terraform scripts or Python automation. Imagine an engineer resolving a production bug in minutes with AI’s step-by-step debug guidance. Why it matters: Teams ship code faster, reduce downtime, and focus on innovation over repetitive tasks. Example: A DevOps team uses AI to generate a Kubernetes deployment script, cutting setup time from two days to two hours."
+    },
+    support: {
+      title: "Transforming Customer Support & Operations with AI",
+      body:
+        "Who: Contact center agents, HR help desks, finance ops, and internal support teams. What: AI suggests real-time chat responses, triages tickets, retrieves policy answers, drafts resolution summaries, and compiles weekly operational reports. How it helps: AI boosts first-contact resolution by 30%, speeds up responses with consistent tone, and automates repetitive workflows like ticket categorization. Picture a support agent resolving a customer issue in one chat by using AI’s instant policy lookup and suggested reply. Why it matters: Happier customers, less agent burnout, and streamlined operations. Example: A call center uses AI to automate 40% of routine inquiries, freeing agents to handle complex cases and improving customer satisfaction by 20%."
+    },
+    analysts: {
+      title: "Democratizing Data Insights with AI",
+      body:
+        "Who: Managers, marketers, and ops teams needing data insights without deep BI skills. What: AI answers spreadsheet queries, generates SQL, creates instant charts, summarizes dashboards, and writes narrative business updates. How it helps: AI turns raw data into clear insights in minutes, bypassing the need for data team bottlenecks. Imagine a manager uploading a messy CSV and getting a polished revenue trend chart with a written summary for the next team meeting. Why it matters: Non-analysts make data-driven decisions quickly, without waiting days for reports. Example: A sales manager uses AI to analyze a 10,000-row dataset, generating a weekly performance report in 15 minutes instead of three days."
+    },
+  },
+
+  pricing: {
+    title: "Pricing Plans",
+    subtitle: "Scale intelligence in Thailand.",
+    plans: [
+      {
+        id: "shared",
+        title: "Shared",
+        features: [
+          "Thai residency",
+          "Social login",
+          "Shared DB/GPU",
+          "Managed models",
+          "Basic RBAC",
+          "Standard backups",
+          "Email support",
+          "Low cost",
+        ],
+        buttonLabel: "Contact Sales",
+      },
+      {
+        id: "enterprise",
+        title: "Enterprise",
+        features: [
+          "Thai residency",
+          "SAML / OIDC",
+          "Single-tenant servers",
+          "Private GPUs",
+          "Custom model deploy",
+          "SCIM / LDAP",
+          "VPC / Private Link",
+          "24/7 support",
+          "SLA / Audit logs",
+          "Custom pricing",
+        ],
+        buttonLabel: "Contact Sales",
+      },
+    ],
+  },
 
   caseStudies: [
     {

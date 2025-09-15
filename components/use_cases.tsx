@@ -12,6 +12,10 @@ import { ContentDialogTrigger } from "@/components/global/content_dialog"
 import { UseCasePill } from "@/components/use_cases/pill"
 import { GraphicPlaceholder } from "@/components/graphics/placeholder"
 import { ExecBriefingDemo } from "@/components/graphics/exec_briefing_demo"
+import { DevLintFixDemo } from "@/components/graphics/developer_demo"
+import SupportDemo from "@/components/graphics/support_demo"
+import { default as SalesCTAFromNotesDemo } from "@/components/graphics/sales_demo"
+import AnalystDemo from "@/components/graphics/analyst_demo"
 import { use_uc_nav } from "@/lib/uc_store"
 
 export default function UseCases() {
@@ -50,7 +54,9 @@ export default function UseCases() {
     <div id="use-cases">
       <Container bg="dark" className="space-y-12" pad_top="md" pad_bottom="xs">
       <Typography as="h2" variant="sectionTitle" className="!mb-6">{ui.headings.useCases}</Typography>
-      <Typography variant="sectionSubtitle">Discover how Chaeth transforms customer interactions across various industries</Typography>
+      {ui.subtitles?.useCases ? (
+        <Typography variant="sectionSubtitle">{ui.subtitles.useCases}</Typography>
+      ) : null}
 
       {/* Pills - responsive: mobile grid (2–3 cols), desktop single row */}
       <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 mb-6 max-w-md sm:max-w-lg md:max-w-none mx-auto place-items-center">
@@ -70,7 +76,7 @@ export default function UseCases() {
       {/* Embla carousel - responsive heights */}
       <div className="mx-auto max-w-6xl">
         <div
-          className="embla relative overflow-hidden min-h-[24rem] md:min-h-[28rem] sm:min-h-[32rem]"
+          className="embla relative overflow-hidden min-h-[24rem] sm:min-h-[28rem] md:min-h-[32rem]"
           role="region"
           aria-roledescription="carousel"
           aria-label="Use cases carousel"
@@ -92,6 +98,14 @@ export default function UseCases() {
                   graphic={
                     uc.id === "exec" ? (
                       <ExecBriefingDemo active={i === selected} />
+                    ) : uc.id === "dev" ? (
+                      <DevLintFixDemo active={i === selected} />
+                    ) : uc.id === "sales" ? (
+                      <SalesCTAFromNotesDemo active={i === selected} />
+                    ) : uc.id === "support" ? (
+                      <SupportDemo active={i === selected} />
+                    ) : uc.id === "analysts" ? (
+                      <AnalystDemo active={i === selected} />
                     ) : (
                       <GraphicPlaceholder label={uc.graphicLabel} />
                     )

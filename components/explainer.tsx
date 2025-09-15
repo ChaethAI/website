@@ -40,6 +40,7 @@ export default function ChaethExplainers() {
   const { ui } = content;
   return (
     <Container id="features" bg="dark" className="space-y-48">
+      {/* Example: Easy to change bg - try: bg="darker", bg="hero", bg="gradient", or custom bgClass="bg-blue-900" */}
       <Typography as="h2" variant="sectionTitle">
         {ui.headings.features}
       </Typography>

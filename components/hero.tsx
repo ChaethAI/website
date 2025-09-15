@@ -10,8 +10,6 @@ import { useSiteContent } from "@/app/providers"
 export default function HeroContent() {
   const { content } = useSiteContent()
   const hero = content.hero
-  // Static destination (demo link does not vary by locale)
-  const DEMO_HREF = "https://demo.chaeth.com"
 
   return (
     <ShaderBackground>
@@ -51,7 +49,7 @@ export default function HeroContent() {
           <GetInTouchButton variant="primary" size="lg" />
           {hero.demo ? (
             <Button variant="ghost" className="text-white" size="lg" asChild>
-              <Link href={DEMO_HREF} target="_blank" rel="noopener noreferrer">{hero.demo.label}</Link>
+              <Link href={hero.demo.href} target={hero.demo.target} rel={hero.demo.rel}>{hero.demo.label}</Link>
             </Button>
           ) : null}
         </div>

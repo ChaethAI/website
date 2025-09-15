@@ -1,7 +1,7 @@
 import * as React from "react";
 
 type PadToken = "none" | "xs" | "sm" | "md" | "lg";
-type BgToken = "none" | "dark" | "darker";
+type BgToken = "none" | "dark" | "darker" | "hero" | "light" | "gradient";
 
 interface ContainerProps {
   children: React.ReactNode;
@@ -12,8 +12,9 @@ interface ContainerProps {
   pad_y?: PadToken; // symmetric vertical padding (default: "md")
   pad_top?: PadToken; // overrides top padding if provided
   pad_bottom?: PadToken; // overrides bottom padding if provided
-  // Centralized background controls
+  // Enhanced background controls with more options
   bg?: BgToken; // maps to standard background tokens (default: "none")
+  bgClass?: string; // custom background class override (takes precedence)
 }
 
 const padYMap: Record<Exclude<PadToken, "none">, string> = {
@@ -40,6 +41,9 @@ const padBottomMap: Record<Exclude<PadToken, "none">, string> = {
 const bgMap: Record<Exclude<BgToken, "none">, string> = {
   dark: "bg-neutral-900",
   darker: "bg-neutral-950",
+  hero: "bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900",
+  light: "bg-neutral-100",
+  gradient: "bg-gradient-to-br from-violet-900/20 via-fuchsia-900/20 to-cyan-900/20",
 };
 
 export function Container({
@@ -51,6 +55,7 @@ export function Container({
   pad_top = "none",
   pad_bottom = "none",
   bg = "none",
+  bgClass: customBgClass,
 }: ContainerProps) {
   // Base inner container width + base padding (mostly horizontal)
   const baseInner = "mx-auto max-w-6xl p-4 sm:p-6 lg:p-10";
@@ -60,11 +65,12 @@ export function Container({
   const pt = pad_top !== "none" ? padTopMap[pad_top] : "";
   const pb = pad_bottom !== "none" ? padBottomMap[pad_bottom] : "";
 
-  // Compose outer background
-  const bgClass = bg !== "none" ? bgMap[bg] : "";
+  // Compose outer background - custom bgClass takes precedence, then token-based bg
+  const defaultBgClass = bg !== "none" ? bgMap[bg] : "";
+  const finalBgClass = customBgClass || defaultBgClass;
 
   return (
-    <section id={id} className={[bgClass, outerClassName].filter(Boolean).join(" ")}>
+    <section id={id} className={[finalBgClass, outerClassName].filter(Boolean).join(" ")}>
       <div className={[baseInner, y, pt, pb, className].filter(Boolean).join(" ")}>{children}</div>
     </section>
   );

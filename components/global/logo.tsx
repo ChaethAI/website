@@ -2,29 +2,24 @@
 
 import Link from "next/link"
 import { Typography } from "@/components/global/typography"
-import { useState } from "react"
 
 interface LogoProps {
   variant?: "black" | "white"
 }
 
 export default function Logo({ variant = "white" }: LogoProps) {
-  const [isHovered, setIsHovered] = useState(false)
-
   const logoClass = variant === "white"
     ? "text-white"
     : "text-black"
 
   const textClass = variant === "white"
-    ? "text-white/95 transition-all duration-300 ease-in-out"
-    : "text-black/95 transition-all duration-300 ease-in-out"
+    ? "text-white/95"
+    : "text-black/95"
 
   return (
     <Link
-      href="#"
+      href="/"
       className="flex items-center gap-2 select-none group"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       <svg
         width="40"
@@ -48,24 +43,12 @@ export default function Logo({ variant = "white" }: LogoProps) {
           fill="currentColor"
         />
       </svg>
-      <div className="relative overflow-hidden">
-        <Typography
-          variant="logo"
-          className={`${textClass} transform transition-transform duration-300 ease-in-out ${
-            isHovered ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'
-          }`}
-        >
-          chaeth
-        </Typography>
-        <Typography
-          variant="logo"
-          className={`${textClass} absolute top-0 left-0 transform transition-transform duration-300 ease-in-out ${
-            isHovered ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
-          }`}
-        >
-          แชท
-        </Typography>
-      </div>
+      <Typography
+        variant="logo"
+        className={textClass}
+      >
+        chaeth
+      </Typography>
     </Link>
   )
 }

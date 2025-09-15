@@ -23,9 +23,6 @@ export default function Footer() {
                 {l.label}
               </Link>
             ))}
-            <Link href="mailto:sales@chaeth.com" className="hover:text-white">
-              sales@chaeth.com
-            </Link>
           </nav>
         </div>
         <div className="mt-8 text-center text-xs text-neutral-500">

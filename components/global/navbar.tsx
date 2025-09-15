@@ -57,11 +57,10 @@ export default function Navbar() {
     }
   }, [])
 
-  // Static destinations (do not vary by locale)
-  const FEATURES_HREF = "#features"
-  const USE_CASES_HREF = "#use-cases"
-  const PRICING_HREF = "#pricing"
-  const DEMO_HREF = "https://demo.chaeth.com"
+  // Link targets from content for maintainability
+  const FEATURES_HREF = content.navbar.links?.[0]?.href ?? "#features"
+  const USE_CASES_HREF = content.navbar.links?.[1]?.href ?? "#use-cases"
+  const PRICING_HREF = content.navbar.links?.[2]?.href ?? "#pricing"
 
   return (
     <header className="w-full absolute top-0 left-0 z-20 text-white">
@@ -132,7 +131,7 @@ export default function Navbar() {
                   {content.useCases?.map((uc) => (
                     <Link
                       key={uc.id}
-                      href="#use-cases"
+                      href={USE_CASES_HREF}
                       className="block w-full px-4 py-3 text-sm bg-transparent text-white hover:bg-white/10 rounded-none transition-colors"
                       onClick={(e) => {
                         // Native anchor scroll via href; set global state for carousel selection
@@ -160,7 +159,7 @@ export default function Navbar() {
           {/* Try Now visible on md+ only; on mobile it's inside hamburger */}
           {content.navbar.action ? (
             <Button variant="ghost" className="text-white hidden md:inline-flex" size="lg" asChild>
-              <Link href={DEMO_HREF} target="_blank" rel="noopener noreferrer">{content.navbar.action.label}</Link>
+              <Link href={content.navbar.action.href} target={content.navbar.action.target} rel={content.navbar.action.rel}>{content.navbar.action.label}</Link>
             </Button>
           ) : null}
           <GetInTouchButton variant="primary" size="lg" />

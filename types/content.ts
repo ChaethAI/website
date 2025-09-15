@@ -72,19 +72,36 @@ export type CtaContent = {
   secondary?: { label: string; href: string };
 };
 
+export type PricingPlan = {
+  id: string;
+  title: string;
+  features: string[];
+  buttonLabel?: string;
+};
+
+export type PricingContent = {
+  title: string;
+  subtitle?: string;
+  plans: PricingPlan[];
+};
+
 export type SiteContent = {
   // Small icon + label items shown in the intro section
   introHighlights?: { id: string; label: string; iconKey: string }[];
   navbar: NavbarContent;
   hero: HeroContent;
+  // Explainers (feature highlights)
+  explainers: CardItem[];
+  explainerDialogs: Record<string, DialogCopy>;
+  // Compact feature tiles
+  compactFeatures: CompactFeature[];
+  // Use cases
   useCases: CardItem[];
   useCasePills: string[];
   useCaseDialogs: Record<string, DialogCopy>;
-
-  explainers: CardItem[];
-  explainerDialogs: Record<string, DialogCopy>;
-
-  compactFeatures: CompactFeature[];
+  // Pricing plans
+  pricing: PricingContent;
+  // Case studies (optional section)
   caseStudies: CaseStudy[];
   cta: CtaContent;
   footer: FooterContent;
@@ -95,6 +112,9 @@ export type SiteContent = {
       useCases: string;
       compact: string;
       caseStudies: string;
+    };
+    subtitles?: {
+      useCases?: string;
     };
   };
 };
