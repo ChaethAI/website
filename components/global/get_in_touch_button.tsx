@@ -26,7 +26,7 @@ export function GetInTouchButton({
 }: Props) {
   const { content } = useSiteContent()
   // Destination should be static across languages
-  const STATIC_CONTACT = "mailto:sales@chaeth.com"
+  const STATIC_CONTACT = "/contact"
   const finalHref = href ?? STATIC_CONTACT
   const finalLabel = label ?? content.cta.primary.label
 

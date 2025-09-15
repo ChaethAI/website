@@ -24,7 +24,7 @@ export function ContactSubmitButton({
 
   return (
     <Button
-      variant="primary"
+      variant="secondary"
       size="lg"
       className={cn("font-semibold", className)}
       onClick={handleClick}

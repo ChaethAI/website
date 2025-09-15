@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/global/navbar";
+import Footer from "@/components/footer";
 import { SiteContentProvider } from "./providers";
 import { UseCaseNavProvider } from "@/lib/uc_store";
 import { GeistSans, GeistMono } from "geist/font";
@@ -134,6 +135,7 @@ export default function RootLayout({
           <SiteContentProvider initialLocale="en">
             <Navbar />
             {children}
+            <Footer />
           </SiteContentProvider>
         </UseCaseNavProvider>
       </body>

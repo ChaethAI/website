@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import type { Locale, SiteContent } from "@/types/content";
-import { getContent } from "@/content/landing";
+import { getContent } from "@/content/en";
 
 type SiteContentContextValue = {
   locale: Locale;
