@@ -157,16 +157,16 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           {/* Mobile hamburger (ghost) */}
           <MobileNav />
+          {/* Language switcher */}
+          <div className="hidden md:block">
+            <LanguageSwitcher />
+          </div>
           {/* Try Now visible on md+ only; on mobile it's inside hamburger */}
           {content.navbar.action ? (
             <Button variant="ghost" className="text-white hidden md:inline-flex" size="lg" asChild>
               <Link href={content.navbar.action.href} target={content.navbar.action.target} rel={content.navbar.action.rel}>{content.navbar.action.label}</Link>
             </Button>
           ) : null}
-          {/* Language switcher */}
-          <div className="hidden md:block">
-            <LanguageSwitcher />
-          </div>
           <GetInTouchButton variant="primary" size="lg" />
         </div>
       </div>

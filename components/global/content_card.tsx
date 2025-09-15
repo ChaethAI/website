@@ -15,6 +15,4 @@ export const ContentCard = React.memo(function ContentCard({ item, children }: {
       </CardContent>
     </Card>
   );
-}, (a, b) => {
-  return a.item.id === b.item.id
 });
