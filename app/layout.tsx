@@ -7,7 +7,7 @@ import { UseCaseNavProvider } from "@/lib/uc_store";
 import { GeistSans, GeistMono } from "geist/font";
 
 export const metadata: Metadata = {
-  title: "Chaeth - Local-First AI Platform for Thai Enterprises",
+  title: "Chaeth - Private AI Platform for Thai Enterprises",
   description: "Professional AI chat and API platform hosted in Thailand. PDPA-compliant, enterprise-grade security with Thai language support. Your data stays in Thailand with full audit trails and SSO integration.",
   keywords: [
     "AI chat",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Chaeth - Local-First AI Platform for Thai Enterprises",
+    title: "Chaeth - Private AI Platform for Thai Enterprises",
     description: "Professional AI chat and API platform hosted in Thailand. PDPA-compliant, enterprise-grade security with Thai language support.",
     url: "https://chaeth.com",
     siteName: "Chaeth",
@@ -47,13 +47,13 @@ export const metadata: Metadata = {
         url: "/chaeth_logo.svg",
         width: 1200,
         height: 630,
-        alt: "Chaeth - Local-First AI Platform for Thai Enterprises",
+        alt: "Chaeth - Private AI Platform for Thai Enterprises",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Chaeth - Local-First AI Platform for Thai Enterprises",
+    title: "Chaeth - Private AI Platform for Thai Enterprises",
     description: "Professional AI chat and API platform hosted in Thailand. PDPA-compliant, enterprise-grade security with Thai language support.",
     images: ["/chaeth_logo.svg"],
     creator: "@chaeth",
