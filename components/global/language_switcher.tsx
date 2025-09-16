@@ -5,7 +5,12 @@ import { Button } from "@/components/ui/button"
 import { ChevronDownIcon } from "lucide-react"
 import { useSiteContent } from "@/app/providers"
 
-export default function LanguageSwitcher() {
+interface LanguageSwitcherProps {
+  variant?: 'desktop' | 'mobile'
+  className?: string
+}
+
+export default function LanguageSwitcher({ variant = 'desktop', className = '' }: LanguageSwitcherProps) {
   const { locale, setLocale } = useSiteContent()
   const [open, setOpen] = React.useState(false)
   const dropdownRef = React.useRef<HTMLDivElement>(null)
@@ -29,6 +34,49 @@ export default function LanguageSwitcher() {
       return () => window.removeEventListener("scroll", onScroll)
     }
   }, [open])
+
+  // Mobile version - inline dropdown like use-cases
+  if (variant === 'mobile') {
+    return (
+      <div className={`space-y-2 ${className}`}>
+        <Button
+          variant="ghost"
+          className="w-full justify-between text-white"
+          onClick={() => setOpen(!open)}
+        >
+          {locale.toUpperCase()}
+          <ChevronDownIcon className="size-4 text-white" />
+        </Button>
+        {open && (
+          <div className="pl-3 space-y-1">
+            {locale === 'en' ? (
+              <Button
+                variant="ghost"
+                className="w-full justify-start pl-4 text-white"
+                onClick={() => {
+                  setLocale('th')
+                  setOpen(false)
+                }}
+              >
+                ไทย (TH)
+              </Button>
+            ) : (
+              <Button
+                variant="ghost"
+                className="w-full justify-start pl-4 text-white"
+                onClick={() => {
+                  setLocale('en')
+                  setOpen(false)
+                }}
+              >
+                English (EN)
+              </Button>
+            )}
+          </div>
+        )}
+      </div>
+    )
+  }
 
   return (
     <div className="relative" ref={dropdownRef}>
