@@ -38,13 +38,17 @@ export function SiteContentProvider({
     } catch {}
 
     if (!preferred) {
-      const navLang = typeof navigator !== "undefined" ? navigator.language?.toLowerCase() : "";
-      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      if (navLang?.startsWith("th") || tz === "Asia/Bangkok") {
-        preferred = "th";
-      } else {
-        preferred = initialLocale;
-      }
+      // Commented out timezone-based language detection for now
+      // const navLang = typeof navigator !== "undefined" ? navigator.language?.toLowerCase() : "";
+      // const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      // if (navLang?.startsWith("th") || tz === "Asia/Bangkok") {
+      //   preferred = "th";
+      // } else {
+      //   preferred = initialLocale;
+      // }
+
+      // Default to English
+      preferred = "en";
     }
 
     if (preferred === "th") {
