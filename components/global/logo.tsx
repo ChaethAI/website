@@ -1,33 +1,54 @@
 "use client"
 
 import Link from "next/link"
-import { Typography } from "@/components/global/typography"
 
 interface LogoProps {
   variant?: "black" | "white"
 }
 
 export default function Logo({ variant = "white" }: LogoProps) {
-  const logoClass = variant === "white"
-    ? "text-white"
-    : "text-black"
+  // MD-only sizing
+  const CHAETH_SIZE = 24
+  const PRIVATE_SIZE = 14
+  const TEXT_GAP = 2
 
-  const textClass = variant === "white"
-    ? "text-white/95"
-    : "text-black/95"
+  // Text block height = chaeth font + gap + Private AI font
+  const H = CHAETH_SIZE + TEXT_GAP + PRIVATE_SIZE
+
+  // SVG cropped to remove top/bottom padding
+  // Original mark spans y=4..13 in a 17x17 box => height 9
+  // Keep aspect ratio: width = H * (17/9)
+  const W = Math.round(H * (17 / 9))
+
+  // Middle line of the logo
+  const MID = H / 2
+
+  // Positions
+  const CHAETH_TOP = 0
+  const CHAETH_TOP_HOVER = MID - CHAETH_SIZE / 2
+
+  const PRIVATE_TOP = CHAETH_SIZE + TEXT_GAP
+  // Shift up toward the middle and fade out
+  const PRIVATE_TOP_HOVER = MID - PRIVATE_SIZE / 2
+
+  const logoClass = variant === "white" ? "text-white" : "text-black"
+  const textClass = variant === "white" ? "text-white/95" : "text-black/95"
 
   return (
     <Link
       href="/"
-      className="flex items-center gap-2 select-none group"
+      aria-label="Chaeth - Private AI"
+      className="group flex items-center select-none"
+      style={{ gap: "8px" }}
     >
+      {/* Logo Mark — cropped viewBox so there is no vertical gap */}
       <svg
-        width="40"
-        height="40"
-        viewBox="0 0 17 17"
+        width={W}
+        height={H}
+        viewBox="0 4 17 9"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className={`${logoClass} w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 transition-transform duration-300 ease-in-out group-hover:scale-105`}
+        className={`${logoClass} transition-transform duration-300 ease-out group-hover:scale-105 flex-shrink-0`}
         aria-hidden
       >
         <path
@@ -43,13 +64,53 @@ export default function Logo({ variant = "white" }: LogoProps) {
           fill="currentColor"
         />
       </svg>
-      <Typography
-        variant="logo"
-        className={textClass}
+
+      {/* Text Block — height equals text stack; overflow hides the moving lines cleanly */}
+      <div
+        className="relative overflow-hidden whitespace-nowrap"
+        style={{ height: `${H}px` }}
       >
-        chaeth
-      </Typography>
+        {/* Sizer to lock intrinsic width from real text metrics */}
+        <div className="invisible leading-none" aria-hidden>
+          <span className="block font-normal tracking-tight" style={{ fontSize: `${CHAETH_SIZE}px` }}>
+            chaeth
+          </span>
+          <span className="block font-light" style={{ fontSize: `${PRIVATE_SIZE}px` }}>
+            Private AI
+          </span>
+        </div>
+
+        {/* chaeth — moves to logo midline on hover */}
+        <span
+          className={`${textClass} absolute left-0 leading-none font-normal tracking-tight transition-all duration-300 ease-out
+                      top-[var(--chaeth-top)] group-hover:top-[var(--chaeth-top-hover)]`}
+          style={
+            {
+              fontSize: `${CHAETH_SIZE}px`,
+              // CSS vars drive synced animation
+              ["--chaeth-top" as any]: `${CHAETH_TOP}px`,
+              ["--chaeth-top-hover" as any]: `${CHAETH_TOP_HOVER}px`,
+            } as React.CSSProperties
+          }
+        >
+          chaeth
+        </span>
+
+        {/* Private AI — fades out in-place from bottom to top */}
+        <span
+          className={`${textClass} absolute left-0 leading-none font-light transition-all duration-300 ease-out
+                      opacity-90 group-hover:opacity-0
+                      top-[var(--private-top)]`}
+          style={
+            {
+              fontSize: `${PRIVATE_SIZE}px`,
+              ["--private-top" as any]: `${PRIVATE_TOP}px`,
+            } as React.CSSProperties
+          }
+        >
+          Private AI
+        </span>
+      </div>
     </Link>
   )
 }
-
