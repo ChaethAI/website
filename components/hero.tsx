@@ -13,7 +13,7 @@ export default function HeroContent() {
 
   return (
     <ShaderBackground>
-      <main className="absolute bottom-5 left-5 z-20 max-w-4xl">
+      <main className="absolute bottom-16 left-5 z-10 max-w-4xl md:bottom-5">
       <div className="text-left">
         <div
           className="inline-flex items-center px-3 py-1 rounded-full bg-black/20 backdrop-blur-sm mb-4 relative border border-white/10"
