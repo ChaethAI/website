@@ -26,6 +26,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      crisp-sdk-web:
+        specifier: ^1.0.25
+        version: 1.0.25
       embla-carousel-react:
         specifier: ^8.6.0
         version: 8.6.0(react@19.1.0)
@@ -1022,6 +1025,9 @@ packages:
 
   concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
+
+  crisp-sdk-web@1.0.25:
+    resolution: {integrity: sha512-CWTHFFeHRV0oqiXoPh/aIAKhFs6xcIM4NenGPnClAMCZUDQgQsF1OWmZWmnVNjJriXUmWRgDfeUxcxygS0dCRA==}
 
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
@@ -3034,6 +3040,8 @@ snapshots:
     optional: true
 
   concat-map@0.0.1: {}
+
+  crisp-sdk-web@1.0.25: {}
 
   cross-spawn@7.0.6:
     dependencies:

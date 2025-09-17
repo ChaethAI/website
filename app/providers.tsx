@@ -3,6 +3,7 @@
 import * as React from "react";
 import type { Locale, SiteContent } from "@/types/content";
 import { get_default_content, load_locale_content } from "@/lib/content_loader";
+import { Crisp } from "crisp-sdk-web";
 
 type SiteContentContextValue = {
   locale: Locale;
@@ -26,6 +27,26 @@ export function SiteContentProvider({
   React.useEffect(() => {
     if (typeof document !== "undefined") {
       document.documentElement.lang = locale;
+    }
+  }, [locale]);
+
+  // Initialize Crisp chat widget
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      Crisp.configure("1c6ff1aa-b6b5-41d1-9b3a-b48852c38cf1");
+
+      // Set user language preference
+      Crisp.user.setNickname(`Visitor (${locale.toUpperCase()})`);
+
+      // Set session segments based on content
+      Crisp.session.setSegments(["website_visitor", locale], true);
+
+      // Set basic session data
+      Crisp.session.setData({
+        language: locale,
+        user_type: "visitor",
+        timestamp: new Date().toISOString()
+      });
     }
   }, [locale]);
 
