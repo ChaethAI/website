@@ -1,4 +1,5 @@
 import { SiteContent } from "@/types/content";
+import { enCaseStudies } from "./case_studies";
 
 const en: SiteContent = {
   navbar: {
@@ -210,39 +211,11 @@ const en: SiteContent = {
     ],
   },
 
-  caseStudies: [
-    {
-      id: "pwc",
-      hero: "/image.png",
-      logo: "/image.png",
-      title: "Generative AI transforms advisory services",
-      body: "We positioned to capitalize on the opportunity and lead across tax, legal, and HR.",
-      meta: "Bivek Sharma, Chief AI Officer • UK & EMEA",
-      href: "#",
-    },
-    {
-      id: "health",
-      hero: "/image.png",
-      logo: "/image.png",
-      title: "Clinical workflows accelerated with copilots",
-      body: "Care teams use tailored assistants to summarize notes and surface insights in real time.",
-      meta: "Cleveland, OH • Healthcare",
-      href: "#",
-    },
-    {
-      id: "finance",
-      hero: "/image.png",
-      logo: "/image.png",
-      title: "Risk analysis with private RAG",
-      body: "Analysts query internal docs securely to speed diligence and reduce research time.",
-      meta: "New York, NY • Finance",
-      href: "#",
-    },
-  ],
+  caseStudies: enCaseStudies,
   cta: {
     title: "Interested to unleash AI across your organization?",
     subtitle: "Tell us about your environment and goals. Let's plan a pilot.",
-    primary: { label: "Get in touch", href: "mailto:hello@chaeth.com" },
+    primary: { label: "Get in touch", href: "mailto:sales@chaeth.com" },
   },
   footer: {
     brandName: "Chaeth",
@@ -251,7 +224,7 @@ const en: SiteContent = {
       { label: "Features", href: "#features" },
       { label: "Pricing", href: "#pricing" },
       { label: "Demo", href: "https://demo.chaeth.com", target: "_blank", rel: "noopener noreferrer" },
-      { label: "Contact", href: "mailto:hello@chaeth.com" },
+      { label: "Contact", href: "mailto:sales@chaeth.com" },
       { label: "Terms", href: "/terms" },
       { label: "Privacy", href: "/privacy" },
     ],
