@@ -1,6 +1,6 @@
 "use client";
 
-import { StatsGrid } from "@/components/readiness/stats_grid";
+import { StatsGrid } from "@/components/readiness_components/stats_grid";
 import type { StatContent } from "@/content/readiness/types";
 
 interface ReadinessStatsProps {

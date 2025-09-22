@@ -1,6 +1,6 @@
 "use client";
 
-import { HeroSection } from "@/components/readiness";
+import { HeroSection } from "@/components/readiness_components";
 import { GetInTouchButton } from "@/components/global/get_in_touch_button";
 import { hero } from "@/content/readiness/why_ai";
 

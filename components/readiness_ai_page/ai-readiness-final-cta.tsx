@@ -1,6 +1,6 @@
 "use client";
 
-import { FinalCta } from "@/components/readiness";
+import { FinalCta } from "@/components/readiness_components";
 import { GetInTouchButton } from "@/components/global/get_in_touch_button";
 import { finalCta } from "@/content/readiness/why_ai";
 

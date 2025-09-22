@@ -1,6 +1,6 @@
 "use client";
 
-import { HeroSection } from "@/components/readiness/hero_section";
+import { HeroSection } from "@/components/readiness_components/hero_section";
 import type { HeroContent } from "@/content/readiness/types";
 import type { ReactNode } from "react";
 

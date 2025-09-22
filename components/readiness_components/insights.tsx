@@ -1,6 +1,6 @@
 "use client";
 
-import { InsightSection, type InsightContent } from "@/components/readiness/insight_section";
+import { InsightSection, type InsightContent } from "@/components/readiness_components/insight_section";
 
 interface ReadinessInsightsProps {
   sections: InsightContent[];

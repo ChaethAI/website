@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { FinalCta } from "@/components/readiness/final_cta";
+import { FinalCta } from "@/components/readiness_components/final_cta";
 import type { FinalCtaContent } from "@/content/readiness/types";
 
 interface ThaiFinalCtaProps {

@@ -1,7 +1,7 @@
-import { ThaiHero } from "@/components/thai_readiness/thai_hero";
-import { ThaiStatisticsGrid } from "@/components/thai_readiness/thai_statistics_grid";
-import { ThaiInsights } from "@/components/thai_readiness/thai_benefits_grid";
-import { ThaiFinalCta } from "@/components/thai_readiness/thai_final_cta";
+import { ThaiHero } from "@/components/readiness_thai_page/thai_hero";
+import { ThaiStatisticsGrid } from "@/components/readiness_thai_page/thai_statistics_grid";
+import { ThaiInsights } from "@/components/readiness_thai_page/thai_benefits_grid";
+import { ThaiFinalCta } from "@/components/readiness_thai_page/thai_final_cta";
 
 export default function ThaiReadinessPage() {
   const heroContent = {
