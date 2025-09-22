@@ -19,6 +19,8 @@ const useNavigationLogic = () => {
   const FEATURES_HREF = content.navbar.links?.[0]?.href ?? "#features"
   const USE_CASES_HREF = content.navbar.links?.[1]?.href ?? "#use-cases"
   const PRICING_HREF = content.navbar.links?.[2]?.href ?? "#pricing"
+  const WHY_AI_HREF = "/ai-readiness" // Static href for Why AI hub
+  const THAI_READINESS_HREF = "/thai-readiness" // Static href for Thai readiness hub
   const DEMO_HREF = content.navbar.action?.href ?? "https://demo.chaeth.com"
 
   return {
@@ -27,35 +29,43 @@ const useNavigationLogic = () => {
     FEATURES_HREF,
     USE_CASES_HREF,
     PRICING_HREF,
+    WHY_AI_HREF,
+    THAI_READINESS_HREF,
     DEMO_HREF
   }
 }
 
 // Desktop navigation component
 function DesktopNav() {
-  const { content, set_active_id, FEATURES_HREF, USE_CASES_HREF, PRICING_HREF } = useNavigationLogic()
+  const { content, set_active_id, FEATURES_HREF, USE_CASES_HREF, PRICING_HREF, WHY_AI_HREF, THAI_READINESS_HREF } = useNavigationLogic()
   const [useCasesOpen, setUseCasesOpen] = React.useState(false)
-  const dropdownRef = React.useRef<HTMLDivElement>(null)
+  const [whyAiOpen, setWhyAiOpen] = React.useState(false)
+  const useCasesRef = React.useRef<HTMLDivElement>(null)
+  const whyAiRef = React.useRef<HTMLDivElement>(null)
   const closeTimeoutRef = React.useRef<NodeJS.Timeout | undefined>(undefined)
 
   // Close dropdown function
   const closeDropdown = React.useCallback(() => {
     setUseCasesOpen(false)
+    setWhyAiOpen(false)
   }, [])
 
   // Handle outside click
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        (useCasesRef.current && !useCasesRef.current.contains(event.target as Node)) &&
+        (whyAiRef.current && !whyAiRef.current.contains(event.target as Node))
+      ) {
         closeDropdown()
       }
     }
 
-    if (useCasesOpen) {
+    if (useCasesOpen || whyAiOpen) {
       document.addEventListener('mousedown', handleClickOutside)
       return () => document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [useCasesOpen, closeDropdown])
+  }, [useCasesOpen, whyAiOpen, closeDropdown])
 
   // Handle scroll to close
   React.useEffect(() => {
@@ -63,11 +73,11 @@ function DesktopNav() {
       closeDropdown()
     }
 
-    if (useCasesOpen) {
+    if (useCasesOpen || whyAiOpen) {
       window.addEventListener('scroll', handleScroll, { passive: true })
       return () => window.removeEventListener('scroll', handleScroll)
     }
-  }, [useCasesOpen, closeDropdown])
+  }, [useCasesOpen, whyAiOpen, closeDropdown])
 
   // Cleanup timeout on unmount
   React.useEffect(() => {
@@ -86,7 +96,7 @@ function DesktopNav() {
 
       {/* Use Cases Dropdown */}
       <div
-        ref={dropdownRef}
+        ref={useCasesRef}
         className="relative"
         onMouseEnter={() => {
           // Clear any pending close timeout when hovering back in
@@ -113,6 +123,10 @@ function DesktopNav() {
               clearTimeout(closeTimeoutRef.current)
               closeTimeoutRef.current = undefined
             }
+            if (!useCasesOpen) {
+              // Opening Use Cases - close Why AI if it's open
+              setWhyAiOpen(false)
+            }
             setUseCasesOpen(!useCasesOpen)
           }}
         >
@@ -122,7 +136,7 @@ function DesktopNav() {
 
         {useCasesOpen && (
           <div
-            className="absolute top-full left-0 mt-0 min-w-64 bg-foreground/40 text-white shadow-lg rounded-none border-t border-white/20"
+            className="absolute top-full left-0 mt-0 min-w-64 bg-foreground/40 text-white shadow-lg rounded-none border-t border-white/20 backdrop-blur-md"
             onMouseEnter={() => {
               // Clear close timeout when hovering dropdown
               if (closeTimeoutRef.current) {
@@ -157,6 +171,83 @@ function DesktopNav() {
         )}
       </div>
 
+      {/* Why AI Dropdown */}
+      <div
+        ref={whyAiRef}
+        className="relative"
+        onMouseEnter={() => {
+          // Clear any pending close timeout when hovering back in
+          if (closeTimeoutRef.current) {
+            clearTimeout(closeTimeoutRef.current)
+            closeTimeoutRef.current = undefined
+          }
+        }}
+        onMouseLeave={() => {
+          // Only close with delay if opened by click (not hover)
+          if (whyAiOpen) {
+            closeTimeoutRef.current = setTimeout(() => {
+              setWhyAiOpen(false)
+            }, 200)
+          }
+        }}
+      >
+        <Button
+          variant="ghost"
+          className="text-white flex items-center gap-1"
+          onClick={() => {
+            // Clear any pending timeout when clicking
+            if (closeTimeoutRef.current) {
+              clearTimeout(closeTimeoutRef.current)
+              closeTimeoutRef.current = undefined
+            }
+            if (!whyAiOpen) {
+              // Opening Why AI - close Use Cases if it's open
+              setUseCasesOpen(false)
+            }
+            setWhyAiOpen(!whyAiOpen)
+          }}
+        >
+          Why AI
+          <ChevronDownIcon className="size-4 transition-transform" style={{ transform: whyAiOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+        </Button>
+
+        {whyAiOpen && (
+          <div
+            className="absolute top-full left-0 mt-0 min-w-64 bg-foreground/40 text-white shadow-lg rounded-none border-t border-white/20 backdrop-blur-md"
+            onMouseEnter={() => {
+              // Clear close timeout when hovering dropdown
+              if (closeTimeoutRef.current) {
+                clearTimeout(closeTimeoutRef.current)
+                closeTimeoutRef.current = undefined
+              }
+            }}
+            onMouseLeave={() => {
+              // Set timeout to close when leaving dropdown
+              closeTimeoutRef.current = setTimeout(() => {
+                setWhyAiOpen(false)
+              }, 200)
+            }}
+          >
+            <div className="p-0">
+              <Link
+                href={WHY_AI_HREF}
+                className="block w-full px-4 py-3 text-sm bg-transparent text-white hover:bg-white/10 rounded-none transition-colors"
+                onClick={() => setWhyAiOpen(false)}
+              >
+                The AI Opportunity
+              </Link>
+              <Link
+                href={THAI_READINESS_HREF}
+                className="block w-full px-4 py-3 text-sm bg-transparent text-white hover:bg-white/10 rounded-none transition-colors"
+                onClick={() => setWhyAiOpen(false)}
+              >
+                Thai AI Readiness
+              </Link>
+            </div>
+          </div>
+        )}
+      </div>
+
       <Button variant="ghost" className="text-white" asChild>
         <Link href={PRICING_HREF}>{content.navbar.links?.[2]?.label ?? "Pricing"}</Link>
       </Button>
@@ -166,9 +257,10 @@ function DesktopNav() {
 
 // Mobile navigation component
 function MobileNav() {
-  const { content, set_active_id, FEATURES_HREF, PRICING_HREF, DEMO_HREF } = useNavigationLogic()
+  const { content, set_active_id, FEATURES_HREF, PRICING_HREF, DEMO_HREF, WHY_AI_HREF, THAI_READINESS_HREF } = useNavigationLogic()
   const [open, setOpen] = React.useState(false)
   const [useCasesOpen, setUseCasesOpen] = React.useState(false)
+  const [whyAiOpen, setWhyAiOpen] = React.useState(false)
 
   return (
     <div className="md:hidden">
@@ -193,7 +285,13 @@ function MobileNav() {
               <Button
                 variant="ghost"
                 className="w-full justify-between text-white"
-                onClick={() => setUseCasesOpen(!useCasesOpen)}
+                onClick={() => {
+                  if (!useCasesOpen) {
+                    // Opening Use Cases - close Why AI if it's open
+                    setWhyAiOpen(false)
+                  }
+                  setUseCasesOpen(!useCasesOpen)
+                }}
               >
                 {content.navbar.links?.[1]?.label ?? "Use Cases"}
                 <ChevronDownIcon className="size-4 text-white" />
@@ -218,14 +316,55 @@ function MobileNav() {
               )}
             </div>
 
+            {/* Why AI Section */}
+            <div className="space-y-2">
+              <Button
+                variant="ghost"
+                className="w-full justify-between text-white"
+                onClick={() => {
+                  if (!whyAiOpen) {
+                    // Opening Why AI - close Use Cases if it's open
+                    setUseCasesOpen(false)
+                  }
+                  setWhyAiOpen(!whyAiOpen)
+                }}
+              >
+                Why AI
+                <ChevronDownIcon className="size-4 text-white" />
+              </Button>
+              {whyAiOpen && (
+                <div className="pl-3 space-y-1">
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start pl-4 text-white"
+                    asChild
+                    onClick={() => setOpen(false)}
+                  >
+                    <Link href={WHY_AI_HREF}>AI Readiness</Link>
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start pl-4 text-white"
+                    asChild
+                    onClick={() => setOpen(false)}
+                  >
+                    <Link href={THAI_READINESS_HREF}>Thai Readiness</Link>
+                  </Button>
+                </div>
+              )}
+            </div>
+
             <Button variant="ghost" className="w-full justify-start text-white" asChild onClick={() => setOpen(false)}>
               <Link href={PRICING_HREF}>{content.navbar.links?.[2]?.label ?? "Pricing"}</Link>
             </Button>
+            {/* Commenting out Try Now button as requested - AI do not delete */}
+            {/*
             {content.navbar.action ? (
               <Button variant="ghost" className="w-full justify-start text-white" asChild onClick={() => setOpen(false)}>
                 <Link href={DEMO_HREF} target="_blank" rel="noopener noreferrer">{content.navbar.action.label}</Link>
               </Button>
             ) : null}
+            */}
 
             {/* Language section */}
             <LanguageSwitcher variant="mobile" />
@@ -257,11 +396,14 @@ export default function Navbar() {
             <LanguageSwitcher />
           </div>
           {/* Try Now visible on md+ only; on mobile it's inside hamburger */}
+          {/* Commenting out Try Now button as requested - AI do not delete */}
+          {/*
           {content.navbar.action ? (
             <Button variant="ghost" className="text-white hidden md:inline-flex" size="lg" asChild>
               <Link href={content.navbar.action.href} target={content.navbar.action.target} rel={content.navbar.action.rel}>{content.navbar.action.label}</Link>
             </Button>
           ) : null}
+          */}
           <GetInTouchButton variant="primary" size="lg" />
         </div>
       </div>

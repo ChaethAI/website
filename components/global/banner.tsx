@@ -18,7 +18,7 @@ export function Banner({ className }: BannerProps) {
       className
     )}>
       <Link
-        href="/ai-education"
+        href="/ai-readiness"
         className="inline-flex items-center gap-2 text-white hover:text-white/90 transition-all group"
       >
         <Typography

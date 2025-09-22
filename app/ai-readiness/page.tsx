@@ -1,9 +1,5 @@
 "use client";
 
-import { Container } from "@/components/global/container";
-import { Typography } from "@/components/global/typography";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { AiReadinessHero } from "@/components/ai-readiness/ai-readiness-hero";
 import { AiReadinessStatisticsGrid } from "@/components/ai-readiness/ai-readiness-statistics-grid";
 import { AiReadinessBenefitsGrid } from "@/components/ai-readiness/ai-readiness-benefits-grid";
@@ -19,4 +15,3 @@ export default function AiEducationPage() {
     </>
   );
 }
-

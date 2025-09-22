@@ -1,9 +1,9 @@
 "use client";
 
 import { InsightSection } from "@/components/readiness";
-import { insights } from "@/content/readiness/why_ai";
+import { insights } from "@/content/readiness/why_thailand";
 
-export function AiReadinessBenefitsGrid() {
+export function ThaiInsights() {
   return (
     <div className="space-y-0">
       {insights.map((section, index) => (
