@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Container } from "./global/container";
 import { useSiteContent } from "@/app/providers";
+import Logo from "./global/logo";
 
 export default function Footer() {
   const { content } = useSiteContent();
@@ -12,9 +13,9 @@ export default function Footer() {
       <Container pad_y="none" className="py-10">
         <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-6">
           <div className="text-center md:text-left">
-            <div className="text-white font-medium">{footer.brandName}</div>
+            <Logo variant="white" />
             {footer.tagline ? (
-              <div className="text-sm text-neutral-400">{footer.tagline}</div>
+              <div className="text-sm text-neutral-400 mt-2">{footer.tagline}</div>
             ) : null}
           </div>
           <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">

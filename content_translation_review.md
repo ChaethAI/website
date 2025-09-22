@@ -194,3 +194,5 @@
 | **Title** | Risk analysis with private RAG | การวิเคราะห์ความเสี่ยงด้วย RAG ส่วนตัว |
 | **Body** | Analysts query internal docs securely to speed diligence and reduce research time. | นักวิเคราะห์สอบถามเอกสารภายในอย่างปลอดภัยเพื่อเร่งการตรวจสอบและลดเวลาการค้นคว้า |
 | **Meta** | New York, NY • Finance | New York, NY • Finance |
+
+

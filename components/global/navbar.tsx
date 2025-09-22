@@ -240,7 +240,7 @@ export default function Navbar() {
   const { content } = useSiteContent()
 
   return (
-    <header className="w-full absolute top-0 left-0 z-20 text-white">
+    <header className="w-full absolute top-12 sm:top-14 left-0 z-20 text-white">
       <div className="w-full px-5 py-4 flex items-center justify-between">
         {/* Left: Logo */}
         <Logo />

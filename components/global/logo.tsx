@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 
 interface LogoProps {
   variant?: "black" | "white"
@@ -15,10 +16,8 @@ export default function Logo({ variant = "white" }: LogoProps) {
   // Text block height = chaeth font + gap + Private AI font
   const H = CHAETH_SIZE + TEXT_GAP + PRIVATE_SIZE
 
-  // SVG cropped to remove top/bottom padding
-  // Original mark spans y=4..13 in a 17x17 box => height 9
-  // Keep aspect ratio: width = H * (17/9)
-  const W = Math.round(H * (17 / 9))
+  // Logo image dimensions
+  const LOGO_SIZE = H
 
   // Middle line of the logo
   const MID = H / 2
@@ -41,29 +40,15 @@ export default function Logo({ variant = "white" }: LogoProps) {
       className="group flex items-center select-none"
       style={{ gap: "8px" }}
     >
-      {/* Logo Mark — cropped viewBox so there is no vertical gap */}
-      <svg
-        width={W}
-        height={H}
-        viewBox="0 4 17 9"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+      {/* Logo Mark */}
+      <Image
+        src="/chaeth_logo_w.svg"
+        alt=""
+        width={LOGO_SIZE}
+        height={LOGO_SIZE}
         className={`${logoClass} transition-transform duration-300 ease-out group-hover:scale-105 flex-shrink-0`}
         aria-hidden
-      >
-        <path
-          fillRule="evenodd"
-          clipRule="evenodd"
-          d="M11.5751 8.5C11.5751 10.985 9.59406 13 7.15056 13C4.70756 13 2.72656 10.985 2.72656 8.5C2.72656 6.015 4.70756 4 7.15056 4C9.59406 4 11.5751 6.015 11.5751 8.5ZM9.75706 8.5C9.75706 9.964 8.59006 11.1505 7.15056 11.1505C5.71156 11.1505 4.54456 9.964 4.54456 8.5C4.54456 7.036 5.71156 5.8495 7.15056 5.8495C8.59056 5.8495 9.75706 7.036 9.75706 8.5Z"
-          fill="currentColor"
-        />
-        <path
-          fillRule="evenodd"
-          clipRule="evenodd"
-          d="M14.2751 4H12.5781V13H14.2751V4Z"
-          fill="currentColor"
-        />
-      </svg>
+      />
 
       {/* Text Block — height equals text stack; overflow hides the moving lines cleanly */}
       <div

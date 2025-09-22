@@ -2,8 +2,8 @@ import { cn } from "@/lib/utils"
 import type { HTMLAttributes } from "react"
 
 interface TypographyProps extends HTMLAttributes<HTMLElement> {
-  variant?: "h1" | "h2" | "h3" | "subtitle" | "body" | "caption" | "sectionTitle" | "sectionSubtitle" | "logo"
-  as?: "h1" | "h2" | "h3" | "p" | "span" | "div"
+  variant?: "h1" | "h2" | "h3" | "subtitle" | "body" | "caption" | "sectionTitle" | "sectionSubtitle" | "logo" | "quote"
+  as?: "h1" | "h2" | "h3" | "p" | "span" | "div" | "blockquote"
 }
 
 export function Typography({ variant = "body", as, className, children, ...props }: TypographyProps) {
@@ -32,6 +32,8 @@ function getDefaultElement(variant: string) {
       return "span"
     case "logo":
       return "span"
+    case "quote":
+      return "blockquote"
     default:
       return "p"
   }
@@ -57,6 +59,8 @@ function getVariantStyles(variant: string) {
       return "text-center text-2xl sm:text-3xl lg:text-5xl font-light tracking-tight text-white mb-18 sm:mb-12 lg:mb-24"
     case "sectionSubtitle":
       return "text-center text-base sm:text-lg text-neutral-200 leading-relaxed max-w-3xl mx-auto mb-12 sm:mb-14"
+    case "quote":
+      return "text-lg md:text-xl font-light italic leading-relaxed"
     default:
       return "text-base font-light text-white/70"
   }
