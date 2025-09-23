@@ -103,7 +103,7 @@ export const insights: InsightContent[] = [
         },
       ],
     },
-    takeaway: "Chaeth&apos;s readiness diagnostics surface capability gaps and prioritise moves that accelerate enterprise rollout without sacrificing governance.",
+    takeaway: "Chaeth's readiness diagnostics surface capability gaps and prioritise moves that accelerate enterprise rollout without sacrificing governance.",
   },
   {
     id: "value-case",
@@ -199,12 +199,12 @@ export const insights: InsightContent[] = [
 ];
 
 export const finalCta: FinalCtaContent = {
-  title: "Mobilise your Thailand AI strategy",
-  message: "Use these signals to brief leadership, plan a private AI rollout, and prove value without compromising compliance.",
+  title: "Turn Thailand's AI readiness into market leadership",
+  message: "Elevate intelligence across every team so customer moments, decisions, and delivery move faster.",
   bullets: [
-    "Benchmark readiness across people, process, and data",
-    "Select workflows that transform entire business units",
-    "Expand with clear guardrails, audit trails, and metrics",
+    "Align executives and operators on measurable AI gains",
+    "Launch Thai-hosted automation that sharpens every service",
+    "Track adoption, compliance, and revenue in a single playbook",
   ],
-  closing: "Chaeth partners with Thai enterprises to design, deploy, and scale AI programs on sovereign infrastructure.",
+  closing: "Chaeth partners with Thai enterprises to convert readiness into lasting market leadership on sovereign infrastructure.",
 };
