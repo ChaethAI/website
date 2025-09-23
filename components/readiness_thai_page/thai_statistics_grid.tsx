@@ -1,7 +1,7 @@
 "use client";
 
 import { StatsGrid } from "@/components/readiness_components";
-import { stats } from "@/content/readiness/why_thailand";
+import { stats } from "@/content/readiness/thailand_en";
 
 export function ThaiStatisticsGrid() {
   return (

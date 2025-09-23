@@ -1,7 +1,7 @@
 "use client";
 
 import { InsightSection } from "@/components/readiness_components";
-import { insights } from "@/content/readiness/why_ai";
+import { insights } from "@/content/readiness/ai_en";
 
 export function AiReadinessBenefitsGrid() {
   return (

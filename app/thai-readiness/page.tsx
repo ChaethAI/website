@@ -3,7 +3,7 @@ import { ThaiStatisticsGrid } from "@/components/readiness_thai_page/thai_statis
 import { ThaiInsights } from "@/components/readiness_thai_page/thai_benefits_grid";
 import { ThaiFinalCta } from "@/components/readiness_thai_page/thai_final_cta";
 import { GetInTouchButton } from "@/components/global/get_in_touch_button";
-import { hero, finalCta } from "@/content/readiness/why_thailand";
+import { hero, finalCta } from "@/content/readiness/thailand_en";
 
 export default function ThaiReadinessPage() {
   return (

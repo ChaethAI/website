@@ -1,7 +1,7 @@
 "use client";
 
 import { StatsGrid } from "@/components/readiness_components";
-import { stats } from "@/content/readiness/why_ai";
+import { stats } from "@/content/readiness/ai_en";
 
 export function AiReadinessStatisticsGrid() {
   return (

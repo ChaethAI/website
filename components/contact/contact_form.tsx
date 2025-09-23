@@ -5,6 +5,20 @@ import { Textarea } from "@/components/ui/textarea";
 import { ContactSubmitButton } from "@/components/contact/contact_submit_button";
 import { is_business_email } from "@/lib/validate";
 
+// Extend Window interface for Crisp
+declare global {
+  interface Window {
+    Crisp: {
+      message: {
+        send: (type: string, message: string) => void;
+      };
+      session: {
+        setData: (data: Record<string, any>) => void;
+      };
+    };
+  }
+}
+
 // If you keep everything in this file (no contact_form_inner), the component below defines the form itself.
 // I included the full form implementation below so you can drop this file in as-is.
 
@@ -66,6 +80,31 @@ export function ContactForm({ className = "", compact = false, onSubmitSuccess }
     if (Object.keys(newErrors).length === 0) {
       console.log("Form submitted:", formData);
       onSubmitSuccess?.(formData);
+
+      // Integrate with Crisp: Send form data as a message to support
+      if (typeof window !== "undefined" && window.Crisp) {
+        const message = `
+New Contact Form Submission:
+- Name: ${formData.name}
+- Company: ${formData.company}
+- Email: ${formData.email}
+- Phone: ${formData.phone}
+- Plan: ${formData.plan}
+- Request: ${formData.request}
+        `.trim();
+
+        window.Crisp.message.send("text", message);
+        window.Crisp.session.setData({
+          contact_form_submitted: true,
+          contact_name: formData.name,
+          contact_email: formData.email,
+          contact_company: formData.company,
+          contact_plan: formData.plan,
+          contact_request: formData.request,
+          submission_timestamp: new Date().toISOString()
+        });
+      }
+
       // TODO: wire to backend action / API route
     }
   };

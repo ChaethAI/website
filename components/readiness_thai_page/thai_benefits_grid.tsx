@@ -1,7 +1,7 @@
 "use client";
 
 import { InsightSection } from "@/components/readiness_components";
-import { insights } from "@/content/readiness/why_thailand";
+import { insights } from "@/content/readiness/thailand_en";
 
 export function ThaiInsights() {
   return (
