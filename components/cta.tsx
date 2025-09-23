@@ -1,9 +1,8 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
+import Image from "next/image";
 import { Container } from "./global/container";
-import { Button } from "@/components/ui/button";
 import { Typography } from "@/components/global/typography";
 import { Card } from "@/components/ui/card";
 import { useSiteContent } from "@/app/providers";
@@ -28,7 +27,7 @@ export default function FinalCTA() {
   };
 
   return (
-    <Container bg="dark" pad_top="xs" pad_bottom="md" className="text-center">
+    <Container bg="dark" pad_top="xs" pad_bottom="sm" className="text-center">
       {/* Gradient border wrapper */}
       <div className="relative mx-auto max-w-2xl rounded-3xl p-[1px] bg-gradient-to-r from-violet-500/30 via-fuchsia-500/20 to-cyan-400/30 shadow-[0_0_0_1px_rgba(255,255,255,0.06)]">
         <Card
@@ -98,6 +97,27 @@ export default function FinalCTA() {
             />
           </div>
         </Card>
+
+        {/* Made by section with logos - outside the card */}
+        <div className="mt-4 mb-2 flex flex-col items-center justify-center gap-2 text-sm text-neutral-400">
+          <span>{content.cta.madeBy}</span>
+          <div className="flex items-center justify-center gap-6">
+            <Image
+              src="/icons/Google_logo.svg"
+              alt="Google"
+              width={50}
+              height={50}
+              className="h-[50px] w-auto opacity-60"
+            />
+            <Image
+              src="/icons/Linux_logo.svg"
+              alt="Linux"
+              width={50}
+              height={50}
+              className="h-[50px] w-auto opacity-60"
+            />
+          </div>
+        </div>
       </div>
     </Container>
   );

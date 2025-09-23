@@ -277,6 +277,7 @@ const th: SiteContent = {
     subtitle:
       "บอกเราเกี่ยวกับสภาพแวดล้อมและเป้าหมายของคุณ มาวางแผนโครงการนำร่องกัน",
     primary: { label: "ติดต่อเรา", href: "mailto:sales@chaeth.com" },
+    madeBy: "สร้างโดยทีมอดีตพนักงาน",
   },
   footer: {
     brandName: "Chaeth",

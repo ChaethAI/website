@@ -70,6 +70,7 @@ export type CtaContent = {
   subtitle?: string;
   primary: { label: string; href: string };
   secondary?: { label: string; href: string };
+  madeBy?: string;
 };
 
 export type PricingPlan = {

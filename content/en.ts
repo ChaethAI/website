@@ -216,6 +216,7 @@ const en: SiteContent = {
     title: "Interested to unleash AI across your organization?",
     subtitle: "Tell us about your environment and goals. Let's plan a pilot.",
     primary: { label: "Get in touch", href: "mailto:sales@chaeth.com" },
+    madeBy: "Made by a team of former",
   },
   footer: {
     brandName: "Chaeth",
