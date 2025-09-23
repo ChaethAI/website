@@ -5,11 +5,27 @@ import Image from "next/image";
 import { Container } from "./global/container";
 import { Typography } from "@/components/global/typography";
 import { Card } from "@/components/ui/card";
-import { useSiteContent } from "@/app/providers";
 import { GetInTouchButton } from "@/components/global/get_in_touch_button";
+import { useSiteContent } from "@/app/providers";
 
-export default function FinalCTA() {
-  const { content } = useSiteContent();
+interface CTAContent {
+  title: string;
+  subtitle?: string;
+  madeBy: string;
+}
+
+interface CTAProps {
+  content?: CTAContent;
+}
+
+export function FinalCTA({ content }: CTAProps) {
+  const { content: globalContent } = useSiteContent();
+
+  // If content is provided, use it; otherwise fall back to global content
+  const ctaContent = content || globalContent.cta;
+
+  // ... existing code ...
+
   // Subtle pointer spotlight (reduced intensity)
   const onMove: React.MouseEventHandler<HTMLDivElement> = (e) => {
     const el = e.currentTarget;
@@ -80,11 +96,11 @@ export default function FinalCTA() {
 
           {/* Content */}
           <Typography as="h2" variant="sectionTitle">
-            {content.cta.title}
+            {ctaContent.title}
           </Typography>
-          {content.cta.subtitle ? (
+          {ctaContent.subtitle ? (
             <Typography as="p" variant="sectionSubtitle" className="mb-8 sm:mb-10">
-              {content.cta.subtitle}
+              {ctaContent.subtitle}
             </Typography>
           ) : null}
 
@@ -100,7 +116,7 @@ export default function FinalCTA() {
 
         {/* Made by section with logos - outside the card */}
         <div className="mt-4 mb-2 flex flex-col items-center justify-center gap-2 text-sm text-neutral-400">
-          <span>{content.cta.madeBy}</span>
+          <span>{ctaContent.madeBy}</span>
           <div className="flex items-center justify-center gap-6">
             <Image
               src="/icons/Google_logo.svg"
@@ -121,4 +137,8 @@ export default function FinalCTA() {
       </div>
     </Container>
   );
+}
+
+export default function DefaultCTA() {
+  return <FinalCTA content={undefined} />;
 }

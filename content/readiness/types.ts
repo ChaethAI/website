@@ -32,9 +32,3 @@ export type InsightContent = {
   takeaway: string;
 };
 
-export type FinalCtaContent = {
-  title: string;
-  message: string;
-  bullets?: string[];
-  closing?: string;
-};

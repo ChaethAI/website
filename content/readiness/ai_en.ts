@@ -1,4 +1,4 @@
-import type { FinalCtaContent, HeroContent, InsightContent, StatContent } from "./types";
+import type { HeroContent, InsightContent, StatContent } from "./types";
 
 export const hero: HeroContent = {
   accent: "Why AI matters now",
@@ -128,14 +128,9 @@ export const insights: InsightContent[] = [
   },
 ];
 
-export const finalCta: FinalCtaContent = {
+export const finalCta = {
   title: "Build your enterprise AI program",
-  message:
+  subtitle:
     "Brief leadership, align on the opportunity, and launch an adoption journey that scales trusted AI across the organisation.",
-  bullets: [
-    "Assess readiness across people, process, and data",
-    "Sequence high-impact workflows across business units",
-    "Measure outcomes and expand with clear guardrails",
-  ],
-  closing: "Chaeth partners with enterprises to design, deploy, and scale AI programs that stay secure, compliant, and measurable.",
+  madeBy: "Made by a team of former",
 };

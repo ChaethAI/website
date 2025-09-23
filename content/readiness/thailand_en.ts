@@ -1,4 +1,4 @@
-import type { FinalCtaContent, HeroContent, InsightContent, StatContent } from "./types";
+import type { HeroContent, InsightContent, StatContent } from "./types";
 
 export const hero: HeroContent = {
   accent: "Thailand`s AI moment",
@@ -198,13 +198,8 @@ export const insights: InsightContent[] = [
   },
 ];
 
-export const finalCta: FinalCtaContent = {
+export const finalCta = {
   title: "Turn Thailand's AI readiness into market leadership",
-  message: "Elevate intelligence across every team so customer moments, decisions, and delivery move faster.",
-  bullets: [
-    "Align executives and operators on measurable AI gains",
-    "Launch Thai-hosted automation that sharpens every service",
-    "Track adoption, compliance, and revenue in a single playbook",
-  ],
-  closing: "Chaeth partners with Thai enterprises to convert readiness into lasting market leadership on sovereign infrastructure.",
+  subtitle: "Elevate intelligence across every team so customer moments, decisions, and delivery move faster.",
+  madeBy: "Made by a team of former",
 };

@@ -1,25 +1,21 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { FinalCta } from "@/components/readiness_components/final_cta";
-import { GetInTouchButton } from "@/components/global/get_in_touch_button";
-import type { FinalCtaContent } from "@/content/readiness/types";
+import { FinalCTA } from "@/components/cta";
 
 interface ThaiFinalCtaProps {
-  content: FinalCtaContent;
+  content: {
+    title: string;
+    subtitle?: string;
+    madeBy: string;
+  };
   action?: ReactNode;
 }
 
 export function ThaiFinalCta({ content, action }: ThaiFinalCtaProps) {
-  const finalAction = action ?? <GetInTouchButton variant="secondary" size="lg" />;
+  const finalAction = action ?? null;
 
   return (
-    <FinalCta
-      title={content.title}
-      message={content.message}
-      bullets={content.bullets}
-      closing={content.closing}
-      action={finalAction}
-    />
+    <FinalCTA content={content} />
   );
 }
