@@ -1,6 +1,5 @@
 "use client";
 
-import type { ReactNode } from "react";
 import { FinalCTA } from "@/components/cta";
 
 interface ThaiFinalCtaProps {
@@ -9,12 +8,9 @@ interface ThaiFinalCtaProps {
     subtitle?: string;
     madeBy: string;
   };
-  action?: ReactNode;
 }
 
-export function ThaiFinalCta({ content, action }: ThaiFinalCtaProps) {
-  const finalAction = action ?? null;
-
+export function ThaiFinalCta({ content }: ThaiFinalCtaProps) {
   return (
     <FinalCTA content={content} />
   );

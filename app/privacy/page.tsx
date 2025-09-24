@@ -36,7 +36,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-2xl font-semibold text-white mb-4">1. Introduction</h2>
             <p>
-              Chaeth ("we," "us," or "our") respects your privacy and is committed to protecting your personal data.
+              Chaeth (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) respects your privacy and is committed to protecting your personal data.
               This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website
               or use our AI platform services. We comply with the Personal Data Protection Act B.E. 2562 (2019) (PDPA) and
               ensure your data remains within Thailand.
@@ -144,7 +144,7 @@ export default function PrivacyPage() {
                   is contractually obligated to maintain the same privacy and security standards.
                 </p>
                 <p>
-                  For more information about Crisp's data practices, please visit:
+                  For more information about Crisp&apos;s data practices, please visit:
                   <a href="https://crisp.chat/privacy/" className="text-blue-400 hover:text-blue-300 ml-1" target="_blank" rel="noopener noreferrer">
                     Crisp Privacy Policy
                   </a>
@@ -177,7 +177,7 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">10. Children's Privacy</h2>
+            <h2 className="text-2xl font-semibold text-white mb-4">10. Children&apos;s Privacy</h2>
             <p>
               Our services are not intended for children under 13 years of age. We do not knowingly collect
               personal information from children under 13. If you believe we have collected information from
@@ -189,7 +189,7 @@ export default function PrivacyPage() {
             <h2 className="text-2xl font-semibold text-white mb-4">11. Changes to This Policy</h2>
             <p>
               We may update this Privacy Policy from time to time. We will notify you of any material changes
-              by posting the updated policy on our website and updating the "Last updated" date. Your continued
+              by posting the updated policy on our website and updating the &ldquo;Last updated&rdquo; date. Your continued
               use of our services after such changes constitutes acceptance of the updated policy.
             </p>
           </section>
@@ -207,7 +207,7 @@ export default function PrivacyPage() {
               <p>Address: Bangkok, Thailand</p>
             </div>
             <p className="mt-4 text-sm text-neutral-400">
-              For PDPA compliance inquiries and data subject requests, please include "PDPA Request" in your email subject.
+              For PDPA compliance inquiries and data subject requests, please include &ldquo;PDPA Request&rdquo; in your email subject.
             </p>
           </section>
         </div>

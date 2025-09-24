@@ -37,14 +37,14 @@ export default function SalesCTAFromNotesDemo({ active = false, className = "" }
   // Copy
   const TITLE = "Meeting notes copied"
   const ASK_LINE = "Please create a clear call to action list based on these notes."
-  const BULLETS = [
+  const BULLETS = React.useMemo(() => [
     "• Send recap email today",
     "• Schedule security review",
     "• Share PDPA and SSO docs",
     "• Propose Enterprise plan for 200 seats",
     "• Loop in solutions architect for pilot",
     "• Confirm procurement contact and next steps",
-  ]
+  ], [])
 
   // Speeds
   const isMobile =
@@ -57,9 +57,9 @@ export default function SalesCTAFromNotesDemo({ active = false, className = "" }
   const GAP_BETWEEN_BULLETS = 380
   const SHIFT_MS = 520
 
-  const sleep = (ms: number) => new Promise<void>((res) => pushTimer(window.setTimeout(res, ms)))
+  const sleep = React.useCallback((ms: number) => new Promise<void>((res) => pushTimer(window.setTimeout(res, ms))), [])
 
-  async function streamBullets(lines: string[]) {
+  const streamBullets = React.useCallback(async (lines: string[]) => {
     setIsTyping(true)
     setStreamText("")
     let acc = ""
@@ -73,7 +73,7 @@ export default function SalesCTAFromNotesDemo({ active = false, className = "" }
       if (i < lines.length - 1) await sleep(GAP_BETWEEN_BULLETS)
     }
     setIsTyping(false)
-  }
+  }, [sleep, delayPerChar])
 
   const run = React.useCallback(async () => {
     // Reset
@@ -98,7 +98,7 @@ export default function SalesCTAFromNotesDemo({ active = false, className = "" }
     await streamBullets(BULLETS)
 
     await sleep(900)
-  }, [delayPerChar])
+  }, [sleep, streamBullets, BULLETS])
 
   const reset = React.useCallback(() => {
     setShowGroup(false)

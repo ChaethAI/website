@@ -169,7 +169,7 @@ export default function AnalystDemo({ active = false, className = "" }: Props) {
           )}
 
           {status === "searching" && (
-            <div className="flex items-center gap-2 text-neutral-800" style={pulseStyle}>
+            <div className="flex items-center gap-2 text-neutral-800" style={blinkStyle}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden focusable="false">
                 <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.6" />
                 <path d="M21 21l-4.3-4.3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />

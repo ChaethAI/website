@@ -4,7 +4,7 @@ import * as React from "react"
 import { Container } from "./global/container"
 import { Typography } from "@/components/global/typography"
 import { useSiteContent } from "@/app/providers"
-import { use_embla_basic } from "@/lib/carousel"
+import { useEmblaBasic } from "@/lib/carousel"
 import { UC_DELAY_MS } from "@/lib/uc"
 import { AlternatingLayout } from "@/components/global/alternating_layout"
 import { ContentCard } from "@/components/global/content_card"
@@ -16,15 +16,15 @@ import { DevLintFixDemo } from "@/components/graphics/developer_demo"
 import SupportDemo from "@/components/graphics/support_demo"
 import { default as SalesCTAFromNotesDemo } from "@/components/graphics/sales_demo"
 import AnalystDemo from "@/components/graphics/analyst_demo"
-import { use_uc_nav } from "@/lib/uc_store"
+import { useUcNav } from "@/lib/uc_store"
 
 export default function UseCases() {
   const { content } = useSiteContent()
   const { useCases: USE_CASES, useCaseDialogs, useCasePills: pills, ui } = content
-  const { active_id } = use_uc_nav()
+  const { active_id } = useUcNav()
 
   // Simple Embla setup - endless loop carousel
-  const { viewportRef, api, selected, scrollTo, scrollNext } = use_embla_basic({
+  const { viewportRef, api, selected, scrollTo, scrollNext } = useEmblaBasic({
     loop: true,
     align: "center",
     containScroll: "trimSnaps",

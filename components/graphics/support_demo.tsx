@@ -4,6 +4,18 @@ import * as React from "react"
 
 type Props = { active?: boolean; className?: string }
 
+// helpers - moved outside component since they don't depend on props/state
+const sleep = (ms: number) => new Promise<void>((res) => setTimeout(res, ms))
+
+async function stream(text: string, set: (s: string) => void, cps = 28) {
+  set("")
+  const delay = Math.max(6, Math.round(1000 / cps))
+  for (let i = 1; i <= text.length; i++) {
+    set(text.slice(0, i))
+    await sleep(delay)
+  }
+}
+
 /**
  * SupportAssistDemoSimpler - thinking pulse on left, immediate black pasted reply
  *
@@ -17,25 +29,13 @@ export default function SupportAssistDemoSimpler({ active = false, className = "
   const stageRef = React.useRef<HTMLDivElement | null>(null)
   const [squareSide, setSquareSide] = React.useState(0)
 
-  // timers
+  // timers - only for cleanup on unmount
   const timers = React.useRef<number[]>([])
-  const pushTimer = (id: number) => timers.current.push(id)
   const clearTimers = () => {
     timers.current.forEach((t) => clearTimeout(t))
     timers.current = []
   }
   React.useEffect(() => () => clearTimers(), [])
-
-  // helpers
-  const sleep = (ms: number) => new Promise<void>((res) => pushTimer(window.setTimeout(res, ms)))
-  async function stream(text: string, set: (s: string) => void, cps = 28) {
-    set("")
-    const delay = Math.max(6, Math.round(1000 / cps))
-    for (let i = 1; i <= text.length; i++) {
-      set(text.slice(0, i))
-      await sleep(delay)
-    }
-  }
 
   // content
   const CUSTOMER_ONLY = 'I tried to upload the CSV but got `ERR_CONSTRAINT: users_email_unique`. I do not speak Thai.'

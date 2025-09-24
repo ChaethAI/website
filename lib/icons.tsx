@@ -1,4 +1,5 @@
 import * as React from "react"
+import Image from "next/image"
 
 // Simple white SVG icons with consistent sizing
 // Expand this map with short keys as needed
@@ -17,10 +18,10 @@ export function get_icon(key: string, props: React.SVGProps<SVGSVGElement> = {})
   switch (key) {
     case "thai":
       // Use provided flag asset; cap height to 30px
-      return <img src="/icons/thai_flag.svg" alt="Thai language" className="h-[30px] w-auto" />
+      return <Image src="/icons/thai_flag.svg" alt="Thai language" width={30} height={30} className="h-[30px] w-auto" />
     case "pdpa":
       // Use provided PDPA asset; cap height to 30px
-      return <img src="/icons/pdpa.svg" alt="PDPA compliance" className="h-[30px] w-auto" />
+      return <Image src="/icons/pdpa.svg" alt="PDPA compliance" width={30} height={30} className="h-[30px] w-auto" />
     case "shield":
       return (
         <svg {...common} className={`h-[30px] w-[30px] text-white ${props.className ?? ""}`}>

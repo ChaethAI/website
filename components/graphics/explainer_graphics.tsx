@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 
 type ExplainerId = "hosted" | "privacy" | "sso" | string;
 
@@ -18,7 +19,7 @@ export function ExplainerGraphic({ id }: { id: ExplainerId }) {
       <div className="flex h-[200px] w-[200px] items-center justify-center text-neutral-900">
         {asset ? (
           asset.type === "img" ? (
-            <img
+            <Image
               src={asset.src}
               alt={asset.alt}
               width={200}

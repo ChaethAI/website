@@ -27,8 +27,6 @@ export default function Logo({ variant = "white" }: LogoProps) {
   const CHAETH_TOP_HOVER = MID - CHAETH_SIZE / 2
 
   const PRIVATE_TOP = CHAETH_SIZE + TEXT_GAP
-  // Shift up toward the middle and fade out
-  const PRIVATE_TOP_HOVER = MID - PRIVATE_SIZE / 2
 
   const logoClass = variant === "white" ? "text-white" : "text-black"
   const textClass = variant === "white" ? "text-white/95" : "text-black/95"
@@ -73,8 +71,8 @@ export default function Logo({ variant = "white" }: LogoProps) {
             {
               fontSize: `${CHAETH_SIZE}px`,
               // CSS vars drive synced animation
-              ["--chaeth-top" as any]: `${CHAETH_TOP}px`,
-              ["--chaeth-top-hover" as any]: `${CHAETH_TOP_HOVER}px`,
+              "--chaeth-top": `${CHAETH_TOP}px`,
+              "--chaeth-top-hover": `${CHAETH_TOP_HOVER}px`,
             } as React.CSSProperties
           }
         >
@@ -89,7 +87,7 @@ export default function Logo({ variant = "white" }: LogoProps) {
           style={
             {
               fontSize: `${PRIVATE_SIZE}px`,
-              ["--private-top" as any]: `${PRIVATE_TOP}px`,
+              "--private-top": `${PRIVATE_TOP}px`,
             } as React.CSSProperties
           }
         >

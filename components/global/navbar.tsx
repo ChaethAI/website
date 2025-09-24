@@ -7,13 +7,13 @@ import Logo from "@/components/global/logo"
 import { useSiteContent } from "@/app/providers"
 import { GetInTouchButton } from "@/components/global/get_in_touch_button"
 import { Menu, ChevronDownIcon } from "lucide-react"
-import { use_uc_nav } from "@/lib/uc_store"
+import { useUcNav } from "@/lib/uc_store"
 import LanguageSwitcher from "@/components/global/language_switcher"
 
 // Shared navigation constants and logic
 const useNavigationLogic = () => {
   const { content } = useSiteContent()
-  const { set_active_id } = use_uc_nav()
+  const { set_active_id } = useUcNav()
 
   // Link targets from content for maintainability
   const FEATURES_HREF = content.navbar.links?.[0]?.href ?? "#features"
@@ -257,7 +257,7 @@ function DesktopNav() {
 
 // Mobile navigation component
 function MobileNav() {
-  const { content, set_active_id, FEATURES_HREF, PRICING_HREF, DEMO_HREF, WHY_AI_HREF, THAI_READINESS_HREF } = useNavigationLogic()
+  const { content, set_active_id, FEATURES_HREF, PRICING_HREF, WHY_AI_HREF, THAI_READINESS_HREF } = useNavigationLogic()
   const [open, setOpen] = React.useState(false)
   const [useCasesOpen, setUseCasesOpen] = React.useState(false)
   const [whyAiOpen, setWhyAiOpen] = React.useState(false)
@@ -376,7 +376,6 @@ function MobileNav() {
 }
 
 export default function Navbar() {
-  const { content } = useSiteContent()
 
   return (
     <header className="w-full absolute top-12 sm:top-14 left-0 z-20 text-white">

@@ -33,9 +33,9 @@ export function ExecBriefingDemo({ active = false, className = "" }: Props) {
     "Next: approve two vendors to protect Q4, hold guidance, and continue cost discipline."
   ].join("\n")
 
-  const sleep = (ms: number) => new Promise<void>((res) => pushTimer(window.setTimeout(res, ms)))
+  const sleep = React.useCallback((ms: number) => new Promise<void>((res) => pushTimer(window.setTimeout(res, ms))), [])
 
-  async function typeText(text: string, set: (s: string) => void, cps = 22) {
+  const typeText = React.useCallback(async (text: string, set: (s: string) => void, cps = 22) => {
     setIsTyping(true)
     set("")
     const delay = Math.max(10, Math.round(1000 / cps))
@@ -44,7 +44,7 @@ export function ExecBriefingDemo({ active = false, className = "" }: Props) {
       await sleep(delay)
     }
     setIsTyping(false)
-  }
+  }, [sleep])
 
   const run = React.useCallback(async () => {
     // reset
@@ -101,7 +101,7 @@ export function ExecBriefingDemo({ active = false, className = "" }: Props) {
       await sleep(delay + extra)
     }
     setIsTyping(false)
-  }, [])
+  }, [STREAM, sleep, typeText])
 
   const reset = React.useCallback(() => {
     setTypedQ("")

@@ -26,7 +26,7 @@ export function UseCasePill({ label, active, onClick, delayMs = 10000, reducedMo
         active ? "bg-white/15" : "bg-white/5",
         "hover:bg-white",
       ].join(" ")}
-      style={!reducedMotion ? ({ ['--delay' as any]: `${delayMs}ms` } as React.CSSProperties) : undefined}
+      style={!reducedMotion ? ({ '--delay': `${delayMs}ms` } as React.CSSProperties & { '--delay': string }) : undefined}
     >
       {!reducedMotion && <div className="uc__bar absolute left-0 top-0 z-0 h-full w-full bg-white/30 pointer-events-none" />}
       <Typography as="span" variant="caption" className="relative z-[1] text-current">

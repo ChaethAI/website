@@ -16,9 +16,9 @@ export function UseCaseNavProvider({ children }: { children: React.ReactNode }) 
   return <UseCaseNavContext.Provider value={value}>{children}</UseCaseNavContext.Provider>
 }
 
-export function use_uc_nav() {
+export function useUcNav() {
   const ctx = React.useContext(UseCaseNavContext)
-  if (!ctx) throw new Error("use_uc_nav must be used within UseCaseNavProvider")
+  if (!ctx) throw new Error("useUcNav must be used within UseCaseNavProvider")
   return ctx
 }
 

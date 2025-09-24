@@ -41,12 +41,6 @@ export function SiteContentProvider({
       // Set session segments based on content
       Crisp.session.setSegments(["website_visitor", locale], true);
 
-      // Set basic session data
-      Crisp.session.setData({
-        language: locale,
-        user_type: "visitor",
-        timestamp: new Date().toISOString()
-      });
     }
   }, [locale]);
 
@@ -81,7 +75,6 @@ export function SiteContentProvider({
     try {
       localStorage.setItem("locale", preferred);
     } catch {}
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const setLocale = React.useCallback((next: Locale) => {

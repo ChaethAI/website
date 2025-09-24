@@ -1,9 +1,9 @@
 "use client"
 
 import * as React from "react"
-import useEmblaCarousel, { type UseEmblaCarouselType } from "embla-carousel-react"
+import useEmblaCarousel from "embla-carousel-react"
 
-export function use_embla_basic(options?: Parameters<typeof useEmblaCarousel>[0]) {
+export function useEmblaBasic(options?: Parameters<typeof useEmblaCarousel>[0]) {
   const [viewportRef, api] = useEmblaCarousel(options)
   const [selected, setSelected] = React.useState(0)
 
@@ -31,4 +31,4 @@ export function use_embla_basic(options?: Parameters<typeof useEmblaCarousel>[0]
   return { viewportRef, api, selected, scrollTo, scrollNext, scrollPrev, jumpTo, jumpNext, jumpPrev }
 }
 
-export type EmblaApi = NonNullable<ReturnType<typeof use_embla_basic>["api"]>
+export type EmblaApi = NonNullable<ReturnType<typeof useEmblaBasic>["api"]>

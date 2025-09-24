@@ -46,7 +46,7 @@ export function DevLintFixDemo({ active = false, className = "" }: Props) {
   const delayPerChar = Math.max(10, Math.round(1000 / CPS))
   const FX = 2 // slow non-typing steps by 2x
   const RED_HOLD_MS = 1200 // extra time after red highlight appears (multiplied by FX)
-  const sleep = (ms: number) => new Promise<void>((res) => pushTimer(window.setTimeout(res, ms)))
+  const sleep = React.useCallback((ms: number) => new Promise<void>((res) => pushTimer(window.setTimeout(res, ms))), [])
 
   // Token colors (light editor vibe)
   const cls = {
@@ -96,7 +96,7 @@ export function DevLintFixDemo({ active = false, className = "" }: Props) {
 
   // Fix lines that stream in
   // 7: const payload: z.infer<typeof Invoice> = Invoice.parse(JSON.parse(body))
-  const FIX1 = [
+  const FIX1 = React.useMemo(() => [
     { t: "  ", c: "" },
     { t: "const ", c: cls.kw },
     { t: "payload", c: cls.id },
@@ -121,10 +121,10 @@ export function DevLintFixDemo({ active = false, className = "" }: Props) {
     { t: "body", c: cls.var },
     { t: ")", c: cls.pun },
     { t: ")", c: cls.pun },
-  ] as const
+  ] as const, [cls.kw, cls.id, cls.dim, cls.ns, cls.pun, cls.fn, cls.type, cls.op, cls.var])
 
   // 8: const items = Items.parse(payload.items)
-  const FIX2 = [
+  const FIX2 = React.useMemo(() => [
     { t: "  ", c: "" },
     { t: "const ", c: cls.kw },
     { t: "items", c: cls.id },
@@ -137,10 +137,10 @@ export function DevLintFixDemo({ active = false, className = "" }: Props) {
     { t: ".", c: cls.pun },
     { t: "items", c: cls.id },
     { t: ")", c: cls.pun },
-  ] as const
+  ] as const, [cls.kw, cls.id, cls.op, cls.type, cls.pun, cls.fn, cls.var])
 
-  const FIX1_FULL = React.useMemo(() => FIX1.map((x) => x.t).join(""), [])
-  const FIX2_FULL = React.useMemo(() => FIX2.map((x) => x.t).join(""), [])
+  const FIX1_FULL = React.useMemo(() => FIX1.map((x) => x.t).join(""), [FIX1])
+  const FIX2_FULL = React.useMemo(() => FIX2.map((x) => x.t).join(""), [FIX2])
   const FIX1_LEN = FIX1_FULL.length
   const FIX2_LEN = FIX2_FULL.length
 
@@ -354,7 +354,7 @@ export function DevLintFixDemo({ active = false, className = "" }: Props) {
 
     setFixTintOn(false)
     setShowHeaderError(false)
-  }, [delayPerChar])
+  }, [delayPerChar, FIX1_LEN, FIX2_LEN, sleep])
 
   const reset = React.useCallback(() => {
     setShowHeaderError(true)

@@ -5,20 +5,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { ContactSubmitButton } from "@/components/contact/contact_submit_button";
 import { is_business_email } from "@/lib/validate";
 
-// Extend Window interface for Crisp
-declare global {
-  interface Window {
-    Crisp: {
-      message: {
-        send: (type: string, message: string) => void;
-      };
-      session: {
-        setData: (data: Record<string, any>) => void;
-      };
-    };
-  }
-}
-
 // If you keep everything in this file (no contact_form_inner), the component below defines the form itself.
 // I included the full form implementation below so you can drop this file in as-is.
 
@@ -37,9 +23,10 @@ interface ContactFormProps {
   className?: string;
   compact?: boolean; // smaller paddings for sidebar usage
   onSubmitSuccess?: (data: ContactFormData) => void;
+  onReset?: () => void;
 }
 
-export function ContactForm({ className = "", compact = false, onSubmitSuccess }: ContactFormProps) {
+export function ContactForm({ className = "", compact = false, onSubmitSuccess, onReset }: ContactFormProps) {
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     company: "",
@@ -50,6 +37,24 @@ export function ContactForm({ className = "", compact = false, onSubmitSuccess }
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+
+  const handleReset = () => {
+    setFormData({
+      name: "",
+      company: "",
+      email: "",
+      phone: "",
+      request: "",
+      plan: "",
+    });
+    setErrors({});
+    setIsSubmitting(false);
+    setIsSubmitted(false);
+    onReset?.();
+  };
 
   const handleInputChange = (field: keyof ContactFormData, value: string) => {
     setFormData((prev: ContactFormData) => ({ ...prev, [field]: value }));
@@ -59,7 +64,7 @@ export function ContactForm({ className = "", compact = false, onSubmitSuccess }
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const newErrors: Record<string, string> = {};
@@ -78,34 +83,20 @@ export function ContactForm({ className = "", compact = false, onSubmitSuccess }
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      console.log("Form submitted:", formData);
-      onSubmitSuccess?.(formData);
+      setIsSubmitting(true);
 
-      // Integrate with Crisp: Send form data as a message to support
-      if (typeof window !== "undefined" && window.Crisp) {
-        const message = `
-New Contact Form Submission:
-- Name: ${formData.name}
-- Company: ${formData.company}
-- Email: ${formData.email}
-- Phone: ${formData.phone}
-- Plan: ${formData.plan}
-- Request: ${formData.request}
-        `.trim();
+      try {
+        // TODO: wire to backend action / API route
+        // Simulate API call
+        await new Promise(resolve => setTimeout(resolve, 1000));
 
-        window.Crisp.message.send("text", message);
-        window.Crisp.session.setData({
-          contact_form_submitted: true,
-          contact_name: formData.name,
-          contact_email: formData.email,
-          contact_company: formData.company,
-          contact_plan: formData.plan,
-          contact_request: formData.request,
-          submission_timestamp: new Date().toISOString()
-        });
+        onSubmitSuccess?.(formData);
+        setIsSubmitted(true);
+      } catch (error) {
+        // Handle error state here if needed
+      } finally {
+        setIsSubmitting(false);
       }
-
-      // TODO: wire to backend action / API route
     }
   };
 
@@ -118,8 +109,34 @@ New Contact Form Submission:
     .filter(Boolean)
     .join(" ");
 
+  // Success state - check this FIRST
+  if (isSubmitted) {
+    return (
+      <div className={["space-y-4 text-center", className].filter(Boolean).join(" ")}>
+
+        <div className="w-16 h-16 mx-auto bg-success rounded-full flex items-center justify-center">
+          <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h3 className="text-xl font-semibold text-white">Thank you for your interest!</h3>
+        <p className="text-neutral-300">
+          We've received your request and will be in touch within 24 hours.
+        </p>
+        <button
+          onClick={handleReset}
+          className="mt-4 px-4 py-2 bg-neutral-800 text-white rounded-md hover:bg-neutral-700 transition-colors"
+        >
+          Submit Another Request
+        </button>
+      </div>
+    );
+  }
+
+  // Form state
   return (
     <form onSubmit={handleSubmit} className={["space-y-6", className].filter(Boolean).join(" ")}>
+
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-white mb-2">
           Name *
@@ -226,8 +243,12 @@ New Contact Form Submission:
         {errors.request && <p className="mt-1 text-sm text-red-600">{errors.request}</p>}
       </div>
 
-      <ContactSubmitButton type="submit" className="w-full">
-        Submit Request
+      <ContactSubmitButton
+        type="submit"
+        className="w-full"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? "Submitting..." : "Submit Request"}
       </ContactSubmitButton>
     </form>
   );
