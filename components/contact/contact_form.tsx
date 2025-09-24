@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { ContactSubmitButton } from "@/components/contact/contact_submit_button";
 import { is_business_email } from "@/lib/validate";
+import { useContactCrispHandler } from "./contact_crisp_handler";
 
 // If you keep everything in this file (no contact_form_inner), the component below defines the form itself.
 // I included the full form implementation below so you can drop this file in as-is.
@@ -27,6 +28,8 @@ interface ContactFormProps {
 }
 
 export function ContactForm({ className = "", compact = false, onSubmitSuccess, onReset }: ContactFormProps) {
+  const { handleFormSubmission } = useContactCrispHandler();
+
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     company: "",
@@ -92,6 +95,9 @@ export function ContactForm({ className = "", compact = false, onSubmitSuccess, 
 
         onSubmitSuccess?.(formData);
         setIsSubmitted(true);
+
+        // Integrate with Crisp chat
+        handleFormSubmission(formData);
       } catch (error) {
         // Handle error state here if needed
       } finally {
