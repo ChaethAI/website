@@ -8,6 +8,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Define all available routes
   const routes = [
     '',
+    '/ai-readiness',
+    '/thai-readiness',
     '/contact',
     '/privacy',
     '/terms'

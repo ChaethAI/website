@@ -2,13 +2,11 @@
 
 import type { ContactFormData } from "./contact_form";
 
-// Declare $crisp as a global for the Crisp SDK
-declare global {
-  var $crisp: {
-    push: (args: [string, string, any[]?]) => void;
-    is: (method: string) => boolean;
-    get: (method: string, key?: string) => any;
-  };
+// Type definition for Crisp SDK
+interface CrispSDK {
+  push: (args: [string, string, any[]?]) => void;
+  is: (method: string) => boolean;
+  get: (method: string, key?: string) => any;
 }
 
 /**
@@ -21,19 +19,19 @@ export function useContactCrispHandler() {
   const setUserDetails = (data: ContactFormData) => {
     try {
       if (data.email) {
-        $crisp.push(["set", "user:email", [data.email]]);
+        (globalThis as any).$crisp.push(["set", "user:email", [data.email]]);
         console.log(`[Crisp] Set user email: ${data.email}`);
       }
       if (data.phone) {
-        $crisp.push(["set", "user:phone", [data.phone]]);
+        (globalThis as any).$crisp.push(["set", "user:phone", [data.phone]]);
         console.log(`[Crisp] Set user phone: ${data.phone}`);
       }
       if (data.name) {
-        $crisp.push(["set", "user:nickname", [data.name]]);
+        (globalThis as any).$crisp.push(["set", "user:nickname", [data.name]]);
         console.log(`[Crisp] Set user nickname: ${data.name}`);
       }
       if (data.company) {
-        $crisp.push(["set", "user:company", [data.company]]);
+        (globalThis as any).$crisp.push(["set", "user:company", [data.company]]);
         console.log(`[Crisp] Set user company: ${data.company}`);
       }
     } catch (error) {
@@ -44,7 +42,7 @@ export function useContactCrispHandler() {
   const sendFormMessage = (data: ContactFormData) => {
     try {
       const message = `New Contact Request:\n- Name: ${data.name}\n- Company: ${data.company}\n- Email: ${data.email}\n- Phone: ${data.phone}\n- Plan: ${data.plan}\n- Request: ${data.request}`;
-      $crisp.push(["do", "message:send", ["text", message]]);
+      (globalThis as any).$crisp.push(["do", "message:send", ["text", message]]);
       console.log(`[Crisp] Sent message: ${message}`);
     } catch (error) {
       console.error("[Crisp] Error sending message:", error);
@@ -53,7 +51,7 @@ export function useContactCrispHandler() {
 
   const openChatbox = () => {
     try {
-      $crisp.push(["do", "chat:open"]);
+      (globalThis as any).$crisp.push(["do", "chat:open"]);
       console.log("[Crisp] Opened chatbox");
     } catch (error) {
       console.error("[Crisp] Error opening chatbox:", error);
